@@ -1,0 +1,11 @@
+*~
+*.sw*
+node_modules/
+npm-debug.log
+.idea*
+.npmrc
+tags
+.c9/
+*.sublime-project
+*.sublime-workspace
+.tern-project

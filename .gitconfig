@@ -1,0 +1,11 @@
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore
+[user]
+	name = David Nunez
+	email = arizonatribe@gmail.com
+[alias]
+	revertfile = checkout HEAD --
+	unstage = reset HEAD --
+[github]
+	user = arizonatribe
