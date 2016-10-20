@@ -1,10 +1,3 @@
-# Separated
-alias makeUpdate='cd $CC_UI; cat VERSION; make version VER=$CC_VERSION;'
-alias checkVersion='cat VERSION; cat package.json|jq .version; cat app/config/config.json|jq .version;'
-# All in one
-alias updateVersion='cd $CC_UI; cat VERSION; make version VER=$CC_VERSION; cat VERSION; cat package.json|jq .version; cat app/config/config.json|jq .version;'
-# Quick view - use `git status` or `git show` and grep for the new version number
-alias gitCheckVersion='git diff --word-diff|grep $CC_VERSION'
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
