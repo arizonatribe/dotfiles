@@ -73,9 +73,9 @@ if !isdirectory(dirswap)
     call mkdir(dirswap)
 endif
 
-set backupdir=dirbackup
-set directory=dirswap
-set undodir=dirundo
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
+set undodir=~/.vim/undo//
 
 if !empty(glob("~/.vim/autoload/plug.vim"))
     call plug#begin('~/.vim/plugged')
