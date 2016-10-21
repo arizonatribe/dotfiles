@@ -117,6 +117,9 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     endif
 
     call plug#end()
+
+    map <silent><C-n> :NERDTreeToggle<CR>
+    autocmd vimenter * NERDTree
 endif
 
 filetype plugin indent on
@@ -133,11 +136,7 @@ let g:syntastic_mode_map = { 'mode': 'active',
                             \ 'passive_filetypes': [] }
 
 autocmd Filetype gitcommit setlocal spell textwidth=72
-if exists(':NERDTree')
-    map <silent><C-n> :NERDTreeToggle<CR>
-    autocmd vimenter * NERDTree
-endif
-if isdirectory("~/.vim/colors")
+if isdirectory(dircolors)
     colorscheme kalahari
 endif
 
