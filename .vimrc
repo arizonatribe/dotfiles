@@ -27,6 +27,7 @@ map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
+map <c-f> :call JsBeautify()<cr>
 inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
@@ -110,6 +111,7 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     Plug 'vim-scripts/CursorLineCurrentWindow'
     Plug 'rstacruz/sparkup'
     Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+    Plug 'maksimr/vim-jsbeautify'
 
     if executable("curl")
         Plug 'mattn/webapi-vim'
