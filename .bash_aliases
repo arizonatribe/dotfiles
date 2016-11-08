@@ -19,3 +19,5 @@ alias docker-rmi='docker rmi $(docker images --filter "dangling=true" -q --no-tr
 alias upgrade='sudo apt-get update && sudo apt-get upgrade -y'
 # Shortcut for updating the dotfiles repository
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+# Output the token from the current NPM login session
+alias npm-token='cat ~/.npmrc | grep authToken | sed s@//registry.npmjs.org/:_authToken=@@g'
