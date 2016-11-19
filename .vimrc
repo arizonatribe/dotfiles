@@ -83,10 +83,7 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
 
     Plug 'flazz/vim-colorschemes'
     Plug 'ekalinin/Dockerfile.vim'
-    Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-    Plug 'elzr/vim-json', { 'for': 'json' }
     Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }  
-    Plug 'jparise/vim-graphql'
     Plug 'IN3D/vim-raml', { 'for': 'raml' }
     Plug 'ternjs/tern_for_vim'
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
@@ -110,6 +107,8 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'vim-scripts/CursorLineCurrentWindow'
     Plug 'rstacruz/sparkup'
+    Plug 'jparise/vim-graphql'
+    Plug 'elzr/vim-json', { 'for': 'json' }
     Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
     Plug 'maksimr/vim-jsbeautify'
 
