@@ -27,7 +27,6 @@ map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
-map <c-f> :call JsBeautify()<cr>
 inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
@@ -94,7 +93,6 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     Plug 'vim-scripts/CursorLineCurrentWindow'
 
     " Programming Language syntax highlighting
-    Plug 'klen/python-mode'
     Plug 'ekalinin/Dockerfile.vim'
     Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }  
     Plug 'IN3D/vim-raml', { 'for': 'raml' }
@@ -106,8 +104,7 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
     Plug 'jparise/vim-graphql'
     Plug 'elzr/vim-json', { 'for': 'json' }
-    Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-    Plug 'maksimr/vim-jsbeautify'
+    Plug 'scrooloose/syntastic', { 'for': ['php', 'javascript', 'python'] }
 
     if executable("curl")
         Plug 'mattn/webapi-vim'
@@ -126,6 +123,15 @@ endif
 filetype plugin indent on
 
 let g:ctrlp_custom_ignore = { 'dir': '\v[\/](\.git|node_modules)$' }
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
+let g:javascript_plugin_jsdoc = 1
+let g:syntastic_mode_map = { 'mode': 'active',
+                            \ 'active_filetypes': ['python', 'javascript'],
+                            \ 'passive_filetypes': [] }
 let g:javascript_plugin_jsdoc = 1
 
 if isdirectory(dircolors)
