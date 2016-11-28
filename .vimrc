@@ -82,31 +82,28 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     call plug#begin('~/.vim/plugged')
 
     Plug 'flazz/vim-colorschemes'
-    Plug 'ekalinin/Dockerfile.vim'
-    Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }  
-    Plug 'IN3D/vim-raml', { 'for': 'raml' }
-    Plug 'ternjs/tern_for_vim'
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-    Plug 'godlygeek/tabular'
-    Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
     Plug 'tpope/vim-git', { 'for': 'git' }
-    Plug 'mattn/emmet-vim', { 'for': 'html' }
-    Plug 'edsono/vim-matchit', { 'for': ['html', 'xml'] }
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-eunuch'
-    Plug 'scrooloose/syntastic', { 'for': ['php', 'python', 'javascript', 'css'] }
-    Plug 'scrooloose/nerdtree'
     Plug 'christoomey/vim-tmux-navigator'
-    Plug 'MarcWeber/vim-addon-mw-utils'
-    Plug 'tomtom/tlib_vim'
-    Plug 'honza/vim-snippets'
-    Plug 'garbas/vim-snipmate'
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
+    Plug 'scrooloose/nerdtree'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'vim-scripts/CursorLineCurrentWindow'
-    Plug 'rstacruz/sparkup'
+
+    " Programming Language syntax highlighting
+    Plug 'klen/python-mode'
+    Plug 'ekalinin/Dockerfile.vim'
+    Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }  
+    Plug 'IN3D/vim-raml', { 'for': 'raml' }
+    Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+    Plug 'othree/html5.vim'
+    Plug 'othree/html5-syntax.vim'
+    Plug 'groenewege/vim-less'
+    Plug 'hail2u/vim-css3-syntax'
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
     Plug 'jparise/vim-graphql'
     Plug 'elzr/vim-json', { 'for': 'json' }
     Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
@@ -121,22 +118,16 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
 
     map <silent><C-n> :NERDTreeToggle<CR>
     autocmd vimenter * NERDTree
+    autocmd BufNewFile,BufRead *.less set filetype=less
+    autocmd FileType less set omnifunc=csscomplete#CompleteCSS
+    autocmd Filetype gitcommit setlocal spell textwidth=72
 endif
 
 filetype plugin indent on
 
 let g:ctrlp_custom_ignore = { 'dir': '\v[\/](\.git|node_modules)$' }
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
 let g:javascript_plugin_jsdoc = 1
-let g:syntastic_mode_map = { 'mode': 'active',
-                            \ 'active_filetypes': ['python', 'javascript'],
-                            \ 'passive_filetypes': [] }
 
-autocmd Filetype gitcommit setlocal spell textwidth=72
 if isdirectory(dircolors)
     colorscheme kalahari
 endif
