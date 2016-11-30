@@ -91,6 +91,7 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     Plug 'scrooloose/nerdtree'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'vim-scripts/CursorLineCurrentWindow'
+    Plug 'jlanzarotta/bufexplorer'
 
     " Programming Language syntax highlighting
     Plug 'ekalinin/Dockerfile.vim'
