@@ -107,6 +107,7 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     Plug 'mxw/vim-jsx'
     Plug 'Quramy/vim-js-pretty-template'
     Plug 'jelera/vim-javascript-syntax'
+    Plug 'mileszs/ack.vim'
 
     if executable("curl")
         Plug 'mattn/webapi-vim'
@@ -136,6 +137,7 @@ let g:syntastic_mode_map = { 'mode': 'active',
                             \ 'passive_filetypes': [] }
 let g:javascript_plugin_jsdoc = 1
 let g:solarized_termcolors=256
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 set t_Co=256
 set background=dark
