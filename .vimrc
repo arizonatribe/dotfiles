@@ -89,6 +89,7 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'vim-scripts/CursorLineCurrentWindow'
     Plug 'jlanzarotta/bufexplorer'
+    Plug 'bronson/vim-trailing-whitespace'
 
     " Programming Language syntax highlighting
     Plug 'ekalinin/Dockerfile.vim'
