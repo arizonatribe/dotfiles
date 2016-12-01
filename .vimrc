@@ -5,9 +5,6 @@ syntax enable
 " Search through every directory and subdirectory
 set path+=**
 
-set t_Co=256
-set background=dark
-
 set relativenumber
 set clipboard=unnamed
 set tabstop=4
@@ -106,6 +103,9 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     Plug 'jparise/vim-graphql'
     Plug 'elzr/vim-json', { 'for': 'json' }
     Plug 'scrooloose/syntastic', { 'for': ['php', 'javascript', 'python'] }
+    Plug 'mxw/vim-jsx'
+    Plug 'Quramy/vim-js-pretty-template'
+    Plug 'jelera/vim-javascript-syntax'
 
     if executable("curl")
         Plug 'mattn/webapi-vim'
@@ -134,9 +134,13 @@ let g:syntastic_mode_map = { 'mode': 'active',
                             \ 'active_filetypes': ['python', 'javascript'],
                             \ 'passive_filetypes': [] }
 let g:javascript_plugin_jsdoc = 1
+let g:solarized_termcolors=256
+
+set t_Co=256
+set background=dark
 
 if isdirectory(dircolors)
-    colorscheme kalahari
+    colorscheme solarized2
 endif
 
 
