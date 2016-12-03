@@ -90,6 +90,8 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     Plug 'vim-scripts/CursorLineCurrentWindow'
     Plug 'jlanzarotta/bufexplorer'
     Plug 'bronson/vim-trailing-whitespace'
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'geekq/vim-go'
 
     " Programming Language syntax highlighting
     Plug 'ekalinin/Dockerfile.vim'
@@ -143,7 +145,7 @@ set t_Co=256
 set background=dark
 
 if isdirectory(dircolors)
-    colorscheme solarized2
+    colorscheme solarized
 endif
 
 
