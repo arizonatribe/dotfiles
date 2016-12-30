@@ -9,3 +9,4 @@ tags
 *.sublime-project
 *.sublime-workspace
 .tern-project
+Session.vim

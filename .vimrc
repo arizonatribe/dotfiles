@@ -82,14 +82,14 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-eunuch'
+    Plug 'tpope/vim-obsession'
     Plug 'christoomey/vim-tmux-navigator'
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
     Plug 'scrooloose/nerdtree'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'vim-scripts/CursorLineCurrentWindow'
-    Plug 'jlanzarotta/bufexplorer'
-    Plug 'bronson/vim-trailing-whitespace'
+    Plug 'mileszs/ack.vim'
     Plug 'jiangmiao/auto-pairs'
     Plug 'geekq/vim-go'
 
@@ -109,7 +109,6 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     Plug 'mxw/vim-jsx'
     Plug 'Quramy/vim-js-pretty-template'
     Plug 'jelera/vim-javascript-syntax'
-    Plug 'mileszs/ack.vim'
 
     if executable("curl")
         Plug 'mattn/webapi-vim'
@@ -123,6 +122,7 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     autocmd BufNewFile,BufRead *.less set filetype=less
     autocmd FileType less set omnifunc=csscomplete#CompleteCSS
     autocmd Filetype gitcommit setlocal spell textwidth=72
+    autocmd BufRead,BufNewFile supervisord.conf setf dosini
 endif
 
 filetype plugin indent on

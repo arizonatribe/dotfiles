@@ -21,3 +21,9 @@ alias upgrade='sudo apt-get update && sudo apt-get upgrade -y'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 # Output the token from the current NPM login session
 alias npm-token='cat ~/.npmrc | grep authToken | sed s@//registry.npmjs.org/:_authToken=@@g'
+# Continuous ls of the current directory
+alias lswatch='watch -n 10 "ls -ltr"'
+# Show dangling (orphaned) volumes
+alias docker-volumes='docker volume ls -f dangling=true | grep -v VOLUME'
+# Removes all dangling volumes
+alias docker-rm-volumes='docker volume rm $(docker volume ls -f dangling=true | awk '"'"'{print $2}'"'"' | grep -v VOLUME)'
