@@ -27,3 +27,5 @@ alias lswatch='watch -n 10 "ls -ltr"'
 alias docker-volumes='docker volume ls -f dangling=true | grep -v VOLUME'
 # Removes all dangling volumes
 alias docker-rm-volumes='docker volume rm $(docker volume ls -f dangling=true | awk '"'"'{print $2}'"'"' | grep -v VOLUME)'
+# Checks to see if transparent-huge-pages feature is enabled
+alias thp-enabled='([ "$(cat /sys/kernel/mm/transparent_hugepage/enabled)" == "[always] madvise never" ] && echo yup) || echo nope'
