@@ -29,3 +29,12 @@ alias docker-volumes='docker volume ls -f dangling=true | grep -v VOLUME'
 alias docker-rm-volumes='docker volume rm $(docker volume ls -f dangling=true | awk '"'"'{print $2}'"'"' | grep -v VOLUME)'
 # Checks to see if transparent-huge-pages feature is enabled
 alias thp-enabled='([ "$(cat /sys/kernel/mm/transparent_hugepage/enabled)" == "[always] madvise never" ] && echo yup) || echo nope'
+# Colorize UNIX shell output
+alias ccat='pygmentize -g'
+alias cat-bash='pygmentize -g -l bash'
+alias cat-docker='pygmentize -g -l docker'
+alias cat-console='pygmentize -g -l console'
+alias cat-js='pygmentize -g -l js'
+alias cat-json='pygmentize -g -l json'
+alias cat-make='pygmentize -g -l make'
+alias cat-sh='pygmentize -g -l sh'
