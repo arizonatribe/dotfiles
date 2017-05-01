@@ -18,23 +18,6 @@ set number
 set title
 set wildignore+=*/node_modules/*,*.so,*.swp
 
-map <silent><Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
-map <silent><Leader><S-p> :set paste<CR>O<esc>"*]p:set nopaste<cr>"
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-inoremap <bs> <nop>
-inoremap <del> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-
 let homevim = $HOME . "/.vim/"
 let dirplugins = homevim . "plugged"
 let dirautoload = homevim . "autoload"
@@ -42,6 +25,7 @@ let dircolors = homevim . "colors"
 let dirbackup = homevim . "backup"
 let dirundo = homevim . "undo"
 let dirswap = homevim . "swap"
+let mapleader = "\<Space>"
 
 " Load vim-plug
 if !isdirectory(homevim)
@@ -74,6 +58,26 @@ set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
 set undodir=~/.vim/undo//
 
+set pastetoggle=<F2>
+
+command! E Explore
+
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+inoremap <bs> <nop>
+inoremap <del> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+
 if !empty(glob("~/.vim/autoload/plug.vim"))
     call plug#begin('~/.vim/plugged')
 
@@ -90,10 +94,11 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'vim-scripts/CursorLineCurrentWindow'
     Plug 'mileszs/ack.vim'
-    Plug 'jiangmiao/auto-pairs'
-    Plug 'geekq/vim-go'
+    Plug 'vim-scripts/auto-pairs-gentle'
+    Plug 'evanmiller/nginx-vim-syntax'
 
     " Programming Language syntax highlighting
+    Plug 'geekq/vim-go'
     Plug 'ekalinin/Dockerfile.vim'
     Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }  
     Plug 'IN3D/vim-raml', { 'for': 'raml' }
@@ -117,7 +122,8 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
 
     call plug#end()
 
-    map <silent><C-n> :NERDTreeToggle<CR>
+    nmap <silent>:E<cr> :NERDTreeToggle<CR>
+    nmap <silent>:Explore<cr> :NERDTreeToggle<CR>
     autocmd vimenter * NERDTree
     autocmd BufNewFile,BufRead *.less set filetype=less
     autocmd FileType less set omnifunc=csscomplete#CompleteCSS
@@ -133,6 +139,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
 let g:javascript_plugin_jsdoc = 1
 let g:syntastic_mode_map = { 'mode': 'active',
                             \ 'active_filetypes': ['python', 'javascript'],
@@ -140,6 +147,7 @@ let g:syntastic_mode_map = { 'mode': 'active',
 let g:javascript_plugin_jsdoc = 1
 let g:solarized_termcolors=256
 let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:netrw_liststyles=3
 
 set t_Co=256
 set background=dark
