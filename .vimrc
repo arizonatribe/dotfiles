@@ -13,10 +13,12 @@ set expandtab
 set shiftwidth=4
 set textwidth=80
 set hlsearch
-
 set number
 set title
 set wildignore+=*/node_modules/*,*.so,*.swp
+set autoindent
+set copyindent
+set shiftwidth=4
 
 let homevim = $HOME . "/.vim/"
 let dirplugins = homevim . "plugged"
@@ -71,7 +73,6 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
-inoremap <bs> <nop>
 inoremap <del> <nop>
 nnoremap <left> <nop>
 nnoremap <right> <nop>
@@ -94,18 +95,14 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'vim-scripts/CursorLineCurrentWindow'
     Plug 'mileszs/ack.vim'
-    Plug 'vim-scripts/auto-pairs-gentle'
     Plug 'evanmiller/nginx-vim-syntax'
 
     " Programming Language syntax highlighting
     Plug 'geekq/vim-go'
     Plug 'ekalinin/Dockerfile.vim'
-    Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }  
-    Plug 'IN3D/vim-raml', { 'for': 'raml' }
     Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
     Plug 'othree/html5.vim'
     Plug 'othree/html5-syntax.vim'
-    Plug 'groenewege/vim-less'
     Plug 'hail2u/vim-css3-syntax'
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
     Plug 'jparise/vim-graphql'
