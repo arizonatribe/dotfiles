@@ -182,11 +182,11 @@ git_branch() {
 
 PS1='\['$IYellow'\](\u)\['$IGreen'\]\h\['$BIYellow'\]:\['$Cyan'\]\w\['$Color_Off'\]\['$IRed'\]$(git_branch)\n\['$Ketchup'\]# '
 
-export NVM_DIR="/home/dave/.nvm"
+export NVM_DIR="/home/arizonatribe/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-export GOPATH=$HOME/work
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$HOME/bin
+export GOPATH="$HOME/projects/src"
+export GOBIN="$HOME/projects/bin"
+export PATH=$PATH:/usr/local/go/bin
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

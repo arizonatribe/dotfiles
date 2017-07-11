@@ -68,6 +68,7 @@ map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
+nmap <F8> :TagbarToggle<CR>
 
 inoremap <up> <nop>
 inoremap <down> <nop>
@@ -98,13 +99,15 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     Plug 'evanmiller/nginx-vim-syntax'
 
     " Programming Language syntax highlighting
-    Plug 'geekq/vim-go'
+    Plug 'fatih/vim-go'
     Plug 'ekalinin/Dockerfile.vim'
     Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
     Plug 'othree/html5.vim'
     Plug 'othree/html5-syntax.vim'
     Plug 'hail2u/vim-css3-syntax'
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
+    Plug 'ludovicchabant/vim-gutentags'
+    Plug 'ajh17/VimCompletesMe'
+    Plug 'majutsushi/tagbar'
     Plug 'jparise/vim-graphql'
     Plug 'elzr/vim-json', { 'for': 'json' }
     Plug 'scrooloose/syntastic', { 'for': ['php', 'javascript', 'python'] }
