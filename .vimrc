@@ -100,6 +100,7 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
 
     " Programming Language syntax highlighting
     Plug 'fatih/vim-go'
+    Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
     Plug 'ekalinin/Dockerfile.vim'
     Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
     Plug 'othree/html5.vim'
