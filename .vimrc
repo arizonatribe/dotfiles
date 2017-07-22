@@ -149,6 +149,7 @@ let g:javascript_plugin_jsdoc = 1
 let g:solarized_termcolors=256
 let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:netrw_liststyles=3
+set nofoldenable
 
 set t_Co=256
 set background=dark
