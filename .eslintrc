@@ -7,35 +7,91 @@
     "browser": true,
     "es6": true,
     "jest": true,
-    "meteor": true,
     "node": true
   },
+  "extends": "airbnb",
+  "plugins": [
+    "react"
+  ],
   "rules": {
-      "eol-last": ["error", "always"],
-      "eqeqeq": ["error", "allow-null"],
-      "comma-dangle": ["error", "never"],
-      "indent": ["error", 4],
-      "jsx-quotes": ["warn", "prefer-single"],
-      "linebreak-style": ["error", "unix"],
-      "max-len": ["error", 120, { "ignoreComments": true}],
-      "new-cap": "error",
-      "newline-before-return": "error",
-      "no-console": "error",
-      "no-eval": "error",
-      "no-trailing-spaces": ["error", { "skipBlankLines": true }],
-      "no-mixed-spaces-and-tabs": "error",
-      "no-undef": "error",
-      "no-unused-vars": "error",
-      "object-curly-spacing": "off",
-      "object-shorthand": ["error", "properties"],
-      "one-var": "off",
-      "quotes": ["error", "single"],
-      "react/jsx-filename-extension": "off",
-      "react/jsx-indent": ["error", 4],
-      "semi": ["error", "always"],
-      "semi-spacing": "error",
-      "space-before-function-paren": ["error", "never"],
-      "space-before-blocks": ["error", "always"],
-      "space-infix-ops": "error"
+    "eol-last": [
+      "error",
+      "always"
+    ],
+    "eqeqeq": [
+      "error",
+      "allow-null"
+    ],
+    "comma-dangle": [
+      "error",
+      "never"
+    ],
+    "indent": [
+      "error",
+      4
+    ],
+    "jsx-quotes": [
+      "warn",
+      "prefer-single"
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "max-len": [
+      "error",
+      120,
+      {
+        "ignoreComments": true
+      }
+    ],
+    "new-cap": "error",
+    "newline-before-return": "error",
+    "no-console": "error",
+    "no-eval": "error",
+    "no-trailing-spaces": [
+      "error",
+      {
+        "skipBlankLines": true
+      }
+    ],
+    "no-mixed-spaces-and-tabs": "error",
+    "no-undef": "error",
+    "no-unused-vars": "error",
+    "object-curly-spacing": "off",
+    "object-shorthand": [
+      "error",
+      "properties"
+    ],
+    "one-var": "off",
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "react/jsx-filename-extension": "off",
+    "react/jsx-indent": [
+      "error",
+      4
+    ],
+    "react/jsx-indent-props": [
+      "error",
+      2
+    ],
+    "react/jsx-wrap-multilines": "off",
+    "react/require-default-props": "off",
+    "semi-spacing": "error",
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "never",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ],
+    "space-before-blocks": [
+      "error",
+      "always"
+    ],
+    "space-infix-ops": "error"
   }
 }

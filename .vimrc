@@ -27,7 +27,7 @@ let dircolors = homevim . "colors"
 let dirbackup = homevim . "backup"
 let dirundo = homevim . "undo"
 let dirswap = homevim . "swap"
-let mapleader = "\<Space>"
+let mapleader = ","
 
 " Load vim-plug
 if !isdirectory(homevim)
@@ -79,6 +79,7 @@ nnoremap <left> <nop>
 nnoremap <right> <nop>
 nnoremap <up> <nop>
 nnoremap <down> <nop>
+nnoremap <leader>f :Fixmyjs<CR>
 
 if !empty(glob("~/.vim/autoload/plug.vim"))
     call plug#begin('~/.vim/plugged')
@@ -96,7 +97,7 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'vim-scripts/CursorLineCurrentWindow'
     Plug 'mileszs/ack.vim'
-    Plug 'evanmiller/nginx-vim-syntax'
+    Plug 'vim-scripts/nginx.vim'
 
     " Programming Language syntax highlighting
     Plug 'fatih/vim-go'
@@ -111,10 +112,11 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     Plug 'majutsushi/tagbar'
     Plug 'jparise/vim-graphql'
     Plug 'elzr/vim-json', { 'for': 'json' }
-    Plug 'scrooloose/syntastic', { 'for': ['php', 'javascript', 'python'] }
+    Plug 'vim-syntastic/syntastic'
     Plug 'mxw/vim-jsx'
     Plug 'Quramy/vim-js-pretty-template'
     Plug 'jelera/vim-javascript-syntax'
+    Plug 'ruanyl/vim-fixmyjs'
 
     if executable("curl")
         Plug 'mattn/webapi-vim'
@@ -134,21 +136,32 @@ endif
 
 filetype plugin indent on
 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
 let g:ctrlp_custom_ignore = { 'dir': '\v[\/](\.git|node_modules)$' }
+let g:javascript_plugin_jsdoc = 1
+let g:solarized_termcolors=256
+let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:netrw_liststyles=3
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
-let g:javascript_plugin_jsdoc = 1
-let g:syntastic_mode_map = { 'mode': 'active',
-                            \ 'active_filetypes': ['python', 'javascript'],
-                            \ 'passive_filetypes': [] }
-let g:javascript_plugin_jsdoc = 1
-let g:solarized_termcolors=256
-let g:ackprg = 'ag --nogroup --nocolor --column'
-let g:netrw_liststyles=3
+let g:syntastic_error_symbol = '❌'
+let g:syntastic_style_error_symbol = '⁉️'
+let g:syntastic_warning_symbol = '⚠️'
+let g:syntastic_style_warning_symbol = '💩'
+
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
+
 set nofoldenable
 
 set t_Co=256
