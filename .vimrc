@@ -98,6 +98,7 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     Plug 'vim-scripts/CursorLineCurrentWindow'
     Plug 'mileszs/ack.vim'
     Plug 'vim-scripts/nginx.vim'
+    Plug 'stephenway/postcss.vim'
 
     " Programming Language syntax highlighting
     Plug 'fatih/vim-go'
@@ -131,7 +132,13 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     autocmd BufNewFile,BufRead *.less set filetype=less
     autocmd FileType less set omnifunc=csscomplete#CompleteCSS
     autocmd Filetype gitcommit setlocal spell textwidth=72
+    autocmd BufRead,BufNewFile */supervisor/*.conf setf dosini
+    autocmd BufRead,BufNewFile supervisor.conf setf dosini
     autocmd BufRead,BufNewFile supervisord.conf setf dosini
+    autocmd BufRead,BufNewFile *.nginx setf nginx
+    autocmd BufRead,BufNewFile nginx.conf setf nginx
+    autocmd BufRead,BufNewFile */nginx/*.conf setf nginx
+    autocmd BufRead,BufNewFile */usr/local/nginx/conf/*.conf setf nginx
 endif
 
 filetype plugin indent on

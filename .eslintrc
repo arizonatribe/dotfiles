@@ -75,10 +75,14 @@
     ],
     "react/jsx-indent-props": [
       "error",
-      2
+      4
     ],
     "react/jsx-wrap-multilines": "off",
     "react/require-default-props": "off",
+    "semi": [
+      "error",
+      "never"
+    ],
     "semi-spacing": "error",
     "space-before-function-paren": [
       "error",
