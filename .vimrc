@@ -99,6 +99,7 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     Plug 'mileszs/ack.vim'
     Plug 'vim-scripts/nginx.vim'
     Plug 'stephenway/postcss.vim'
+    Plug 'styled-components/vim-styled-components'
 
     " Programming Language syntax highlighting
     Plug 'fatih/vim-go'
