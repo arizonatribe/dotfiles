@@ -84,41 +84,27 @@ nnoremap <leader>f :Fixmyjs<CR>
 if !empty(glob("~/.vim/autoload/plug.vim"))
     call plug#begin('~/.vim/plugged')
 
+    Plug 'airblade/vim-gitgutter'
+    Plug 'ajh17/VimCompletesMe'
+    Plug 'christoomey/vim-tmux-navigator'
     Plug 'flazz/vim-colorschemes'
-    Plug 'tpope/vim-git', { 'for': 'git' }
-    Plug 'tpope/vim-surround'
+    Plug 'mileszs/ack.vim'
+    Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-eunuch'
-    Plug 'tpope/vim-obsession'
-    Plug 'christoomey/vim-tmux-navigator'
     Plug 'tpope/vim-fugitive'
-    Plug 'airblade/vim-gitgutter'
-    Plug 'scrooloose/nerdtree'
-    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'tpope/vim-obsession'
+    Plug 'tpope/vim-surround'
     Plug 'vim-scripts/CursorLineCurrentWindow'
-    Plug 'mileszs/ack.vim'
-    Plug 'vim-scripts/nginx.vim'
-    Plug 'stephenway/postcss.vim'
-    Plug 'styled-components/vim-styled-components'
 
     " Programming Language syntax highlighting
-    Plug 'fatih/vim-go'
-    Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
-    Plug 'ekalinin/Dockerfile.vim'
-    Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-    Plug 'othree/html5.vim'
-    Plug 'othree/html5-syntax.vim'
     Plug 'hail2u/vim-css3-syntax'
-    Plug 'ludovicchabant/vim-gutentags'
-    Plug 'ajh17/VimCompletesMe'
-    Plug 'majutsushi/tagbar'
-    Plug 'jparise/vim-graphql'
-    Plug 'elzr/vim-json', { 'for': 'json' }
-    Plug 'vim-syntastic/syntastic'
-    Plug 'mxw/vim-jsx'
-    Plug 'Quramy/vim-js-pretty-template'
     Plug 'jelera/vim-javascript-syntax'
-    Plug 'ruanyl/vim-fixmyjs'
+    Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
+    Plug 'sheerun/vim-polyglot'
+    Plug 'stephenway/postcss.vim'
+    Plug 'vim-scripts/nginx.vim'
+    Plug 'vim-syntastic/syntastic'
 
     if executable("curl")
         Plug 'mattn/webapi-vim'
@@ -129,7 +115,6 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
 
     nmap <silent>:E<cr> :NERDTreeToggle<CR>
     nmap <silent>:Explore<cr> :NERDTreeToggle<CR>
-    autocmd vimenter * NERDTree
     autocmd BufNewFile,BufRead *.less set filetype=less
     autocmd FileType less set omnifunc=csscomplete#CompleteCSS
     autocmd Filetype gitcommit setlocal spell textwidth=72
@@ -147,10 +132,15 @@ filetype plugin indent on
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+set nofoldenable
+set t_Co=256
+set background=dark
 
-let g:ctrlp_custom_ignore = { 'dir': '\v[\/](\.git|node_modules)$' }
 let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_flow = 1
+let g:used_javascript_libs = 'ramda,d3,react,jasmine,flux'
 let g:solarized_termcolors=256
+" let g:tagbar_ctags_bin
 let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:netrw_liststyles=3
 
@@ -170,13 +160,6 @@ highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 
-set nofoldenable
-
-set t_Co=256
-set background=dark
-
 if isdirectory(dircolors)
     colorscheme solarized
 endif
-
-
