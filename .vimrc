@@ -19,6 +19,8 @@ set wildignore+=*/node_modules/*,*.so,*.swp
 set autoindent
 set copyindent
 set shiftwidth=4
+set completeopt+=longest,menuone,noinsert
+set shortmess+=c
 
 let homevim = $HOME . "/.vim/"
 let dirplugins = homevim . "plugged"
@@ -70,6 +72,8 @@ map <left> <nop>
 map <right> <nop>
 nmap <F8> :TagbarToggle<CR>
 
+noremap <leader>gb :Gblame<CR>
+noremap <leader>gd :Gdiff<CR>
 inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
@@ -79,15 +83,16 @@ nnoremap <left> <nop>
 nnoremap <right> <nop>
 nnoremap <up> <nop>
 nnoremap <down> <nop>
-nnoremap <leader>f :Fixmyjs<CR>
 
 if !empty(glob("~/.vim/autoload/plug.vim"))
     call plug#begin('~/.vim/plugged')
 
     Plug 'airblade/vim-gitgutter'
-    Plug 'ajh17/VimCompletesMe'
     Plug 'christoomey/vim-tmux-navigator'
     Plug 'flazz/vim-colorschemes'
+    Plug 'icymind/NeoSolarized'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
     Plug 'mileszs/ack.vim'
     Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
     Plug 'tpope/vim-commentary'
@@ -96,6 +101,10 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     Plug 'tpope/vim-obsession'
     Plug 'tpope/vim-surround'
     Plug 'vim-scripts/CursorLineCurrentWindow'
+    Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'ervandew/supertab'
+    Plug 'davidhalter/jedi-vim'
 
     " Programming Language syntax highlighting
     Plug 'hail2u/vim-css3-syntax'
@@ -133,16 +142,24 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 set nofoldenable
-set t_Co=256
-set background=dark
 
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
 let g:used_javascript_libs = 'ramda,d3,react,jasmine,flux'
-let g:solarized_termcolors=256
-" let g:tagbar_ctags_bin
 let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:netrw_liststyles=3
+let g:jedi#popup_on_dot = 0
+let g:deoplete#enable_at_startup = 1
+let g:neosolarized_contrast = "low"
+let g:airline_theme = "molokai"
+
+let g:prettier#exec_cmd_async = 1
+let g:prettier#config#print_width = 80
+let g:prettier#config#tab_width = 4
+let g:prettier#config#semi = 'false'
+let g:prettier#config#single_quote = 'true'
+let g:prettier#config#trailing_comma = 'none'
+let g:prettier#config#parser = 'babylon'
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -154,12 +171,27 @@ let g:syntastic_error_symbol = '❌'
 let g:syntastic_style_error_symbol = '⁉️'
 let g:syntastic_warning_symbol = '⚠️'
 let g:syntastic_style_warning_symbol = '💩'
+let g:syntastic_mode_map = {
+            \ 'mode': 'passive',
+            \ 'active_filetypes': [],
+            \ 'passive_filetypes': [] }
+
+let g:neomake_serialize = 1
+let g:neomake_serialize_abort_on_error = 1
 
 highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 
+set t_Co=256
+set background=dark
+if (has("termguicolors"))
+    set termguicolors
+endif
 if isdirectory(dircolors)
-    colorscheme solarized
+    colorscheme gruvbox
+    " colorscheme NeoSolarized
+    " colorscheme zenburn
+    " colorscheme jellybeans
 endif
