@@ -19,8 +19,6 @@ set wildignore+=*/node_modules/*,*.so,*.swp
 set autoindent
 set copyindent
 set shiftwidth=4
-set completeopt+=longest,menuone,noinsert
-set shortmess+=c
 
 let homevim = $HOME . "/.vim/"
 let dirplugins = homevim . "plugged"
@@ -29,7 +27,6 @@ let dircolors = homevim . "colors"
 let dirbackup = homevim . "backup"
 let dirundo = homevim . "undo"
 let dirswap = homevim . "swap"
-let mapleader = ","
 
 " Load vim-plug
 if !isdirectory(homevim)
@@ -113,7 +110,7 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     Plug 'sheerun/vim-polyglot'
     Plug 'stephenway/postcss.vim'
     Plug 'vim-scripts/nginx.vim'
-    Plug 'vim-syntastic/syntastic'
+    Plug 'neomake/neomake'
 
     if executable("curl")
         Plug 'mattn/webapi-vim'
@@ -134,13 +131,11 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     autocmd BufRead,BufNewFile nginx.conf setf nginx
     autocmd BufRead,BufNewFile */nginx/*.conf setf nginx
     autocmd BufRead,BufNewFile */usr/local/nginx/conf/*.conf setf nginx
+    autocmd! BufWritePost,BufEnter * Neomake
 endif
 
 filetype plugin indent on
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 set nofoldenable
 
 let g:javascript_plugin_jsdoc = 1
@@ -161,28 +156,24 @@ let g:prettier#config#single_quote = 'true'
 let g:prettier#config#trailing_comma = 'none'
 let g:prettier#config#parser = 'babylon'
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
-let g:syntastic_error_symbol = '❌'
-let g:syntastic_style_error_symbol = '⁉️'
-let g:syntastic_warning_symbol = '⚠️'
-let g:syntastic_style_warning_symbol = '💩'
-let g:syntastic_mode_map = {
-            \ 'mode': 'passive',
-            \ 'active_filetypes': [],
-            \ 'passive_filetypes': [] }
-
 let g:neomake_serialize = 1
 let g:neomake_serialize_abort_on_error = 1
-
-highlight link SyntasticErrorSign SignColumn
-highlight link SyntasticWarningSign SignColumn
-highlight link SyntasticStyleErrorSign SignColumn
-highlight link SyntasticStyleWarningSign SignColumn
+let g:neomake_open_list = 2
+let g:neomake_place_signs = 1
+let g:neomake_list_height = 10
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_jsx_enabled_makers = ['eslint']
+let g:neomake_javascript_eslint_exe = system('PATH=$(npm bin):$PATH && which eslint | tr -d "\n"')
+let g:neomake_javascript_eslint_args = ['-f', 'compact']
+let g:airline#extensions#neomake#enabled = 1
+let g:neomake_error_sign = {
+            \ 'text': '❌',
+            \ 'texthl': 'ErrorMsg',
+            \ }
+let g:neomake_warning_sign = {
+            \ 'text': '💩',
+            \ 'texthl': 'WarningMsg',
+            \ }
 
 set t_Co=256
 set background=dark
