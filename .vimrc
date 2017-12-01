@@ -70,7 +70,13 @@ map <right> <nop>
 nmap <F8> :TagbarToggle<CR>
 
 noremap <leader>gb :Gblame<CR>
-noremap <leader>gd :Gdiff<CR>
+" noremap <leader>gd :Gdiff<CR>
+noremap <leader>df :Gdiff<CR>
+
+nnoremap <silent>K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent>gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+
 inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
@@ -100,6 +106,8 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     Plug 'vim-scripts/CursorLineCurrentWindow'
     Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/echodoc.vim'
+    Plug 'roxma/nvim-completion-manager'
     Plug 'ervandew/supertab'
     Plug 'davidhalter/jedi-vim'
 
@@ -108,9 +116,16 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     Plug 'jelera/vim-javascript-syntax'
     Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
     Plug 'sheerun/vim-polyglot'
+    Plug 'reasonml-editor/vim-reason-plus'
     Plug 'stephenway/postcss.vim'
     Plug 'vim-scripts/nginx.vim'
     Plug 'neomake/neomake'
+    Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+
+    " (Optional) Multi-entry selection UI.
+    " Plug 'junegunn/fzf'
+    " (Optional) Multi-entry selection UI.
+    Plug 'Shougo/denite.nvim'
 
     if executable("curl")
         Plug 'mattn/webapi-vim'
@@ -156,6 +171,12 @@ let g:prettier#config#single_quote = 'true'
 let g:prettier#config#trailing_comma = 'none'
 let g:prettier#config#parser = 'babylon'
 
+let g:LanguageClient_serverCommands = {
+    \ 'reason': ['ocaml-language-server', '--stdio'],
+    \ 'ocaml': ['ocaml-language-server', '--stdio'],
+    \ }
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+let g:LanguageClient_autoStart = 1
 let g:neomake_serialize = 1
 let g:neomake_serialize_abort_on_error = 1
 let g:neomake_open_list = 2
@@ -177,12 +198,17 @@ let g:neomake_warning_sign = {
 
 set t_Co=256
 set background=dark
-if (has("termguicolors"))
+if has("termguicolors") && has("nvim")
+    set t_8f=\[[38;2;%lu;%lu;%lum
+    set t_8b=\[[48;2;%lu;%lu;%lum
     set termguicolors
 endif
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
 if isdirectory(dircolors)
     colorscheme gruvbox
     " colorscheme NeoSolarized
     " colorscheme zenburn
     " colorscheme jellybeans
+    hi! Normal ctermbg=NONE guibg=NONE
+    hi! NonText ctermbg=NONE guibg=NONE
 endif
