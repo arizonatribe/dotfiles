@@ -159,6 +159,7 @@ let g:used_javascript_libs = 'ramda,d3,react,jasmine,flux'
 let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:netrw_liststyles=3
 let g:jedi#popup_on_dot = 0
+let g:jedi#force_py_version = 3
 let g:deoplete#enable_at_startup = 1
 let g:neosolarized_contrast = "low"
 let g:airline_theme = "molokai"
@@ -207,6 +208,8 @@ execute "set rtp+=" . g:opamshare . "/merlin/vim"
 if isdirectory(dircolors)
     colorscheme gruvbox
     " colorscheme NeoSolarized
+    " colorscheme lizard
+    " colorscheme obsidian
     " colorscheme zenburn
     " colorscheme jellybeans
     hi! Normal ctermbg=NONE guibg=NONE
