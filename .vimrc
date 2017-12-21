@@ -159,7 +159,7 @@ let g:used_javascript_libs = 'ramda,d3,react,jasmine,flux'
 let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:netrw_liststyles=3
 let g:jedi#popup_on_dot = 0
-let g:jedi#force_py_version = 3
+" let g:jedi#force_py_version = 3
 let g:deoplete#enable_at_startup = 1
 let g:neosolarized_contrast = "low"
 let g:airline_theme = "molokai"
@@ -188,14 +188,14 @@ let g:neomake_jsx_enabled_makers = ['eslint']
 let g:neomake_javascript_eslint_exe = system('PATH=$(npm bin):$PATH && which eslint | tr -d "\n"')
 let g:neomake_javascript_eslint_args = ['-f', 'compact']
 let g:airline#extensions#neomake#enabled = 1
-let g:neomake_error_sign = {
-            \ 'text': '❌',
-            \ 'texthl': 'ErrorMsg',
-            \ }
-let g:neomake_warning_sign = {
-            \ 'text': '💩',
-            \ 'texthl': 'WarningMsg',
-            \ }
+" let g:neomake_error_sign = {
+"             \ 'text': '❌',
+"             \ 'texthl': 'ErrorMsg',
+"             \ }
+" let g:neomake_warning_sign = {
+"             \ 'text': '💩',
+"             \ 'texthl': 'WarningMsg',
+"             \ }
 
 set t_Co=256
 set background=dark
