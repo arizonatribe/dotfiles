@@ -106,10 +106,11 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     Plug 'vim-scripts/CursorLineCurrentWindow'
     Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'Shougo/echodoc.vim'
     Plug 'roxma/nvim-completion-manager'
     Plug 'ervandew/supertab'
     Plug 'davidhalter/jedi-vim'
+    Plug 'zchee/deoplete-jedi'
+    Plug 'heavenshell/vim-jsdoc'
 
     " Programming Language syntax highlighting
     Plug 'hail2u/vim-css3-syntax'
@@ -119,12 +120,11 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     Plug 'reasonml-editor/vim-reason-plus'
     Plug 'stephenway/postcss.vim'
     Plug 'vim-scripts/nginx.vim'
-    Plug 'neomake/neomake'
+    Plug 'w0rp/ale'
     Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 
     " (Optional) Multi-entry selection UI.
     " Plug 'junegunn/fzf'
-    " (Optional) Multi-entry selection UI.
     Plug 'Shougo/denite.nvim'
 
     if executable("curl")
@@ -146,7 +146,6 @@ if !empty(glob("~/.vim/autoload/plug.vim"))
     autocmd BufRead,BufNewFile nginx.conf setf nginx
     autocmd BufRead,BufNewFile */nginx/*.conf setf nginx
     autocmd BufRead,BufNewFile */usr/local/nginx/conf/*.conf setf nginx
-    autocmd! BufWritePost,BufEnter * Neomake
 endif
 
 filetype plugin indent on
@@ -159,8 +158,8 @@ let g:used_javascript_libs = 'ramda,d3,react,jasmine,flux'
 let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:netrw_liststyles=3
 let g:jedi#popup_on_dot = 0
-" let g:jedi#force_py_version = 3
 let g:deoplete#enable_at_startup = 1
+let g:python3_host_prog = '/usr/local/bin/python3'
 let g:neosolarized_contrast = "low"
 let g:airline_theme = "molokai"
 
@@ -178,24 +177,14 @@ let g:LanguageClient_serverCommands = {
     \ }
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 let g:LanguageClient_autoStart = 1
-let g:neomake_serialize = 1
-let g:neomake_serialize_abort_on_error = 1
-let g:neomake_open_list = 2
-let g:neomake_place_signs = 1
-let g:neomake_list_height = 10
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_jsx_enabled_makers = ['eslint']
-let g:neomake_javascript_eslint_exe = system('PATH=$(npm bin):$PATH && which eslint | tr -d "\n"')
-let g:neomake_javascript_eslint_args = ['-f', 'compact']
-let g:airline#extensions#neomake#enabled = 1
-" let g:neomake_error_sign = {
-"             \ 'text': '❌',
-"             \ 'texthl': 'ErrorMsg',
-"             \ }
-" let g:neomake_warning_sign = {
-"             \ 'text': '💩',
-"             \ 'texthl': 'WarningMsg',
-"             \ }
+let b:ale_linters = {
+    \ 'python': ['flake8', 'pylint'],
+    \ 'javascript': ['eslint'],
+\}
+let g:ale_fixers = {
+    \ 'javascript': ['eslint']
+\}
+let g:ale_fix_on_save = 1
 
 set t_Co=256
 set background=dark
