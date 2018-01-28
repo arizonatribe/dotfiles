@@ -1,6 +1,6 @@
 [core]
 	editor = nvim
-	excludesfile = ~/.gitignore
+	excludesfile = ~/.base_gitignore
 [user]
 	name = David Nunez
 	email = arizonatribe@gmail.com

@@ -4,6 +4,7 @@
 !.bashrc
 !.eslintrc
 !.gitconfig
+!.base_gitignore
 !.gitignore
 !.prettierrc
 !.babelrc

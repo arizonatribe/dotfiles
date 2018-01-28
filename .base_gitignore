@@ -1,0 +1,16 @@
+*.bak
+*.sw*
+.idea*
+.netrc
+.npmrc
+.c9/
+.cache/
+.vscode
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+.tern-project
+node_modules/
+npm-debug.log
+Session.vim
+tags
