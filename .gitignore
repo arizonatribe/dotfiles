@@ -7,7 +7,6 @@
 !.gitignore
 !.prettierrc
 !.babelrc
-!.vimrc
 !.config/nvim/init.vim
 !README.md
 !.tmux.conf

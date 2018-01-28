@@ -195,8 +195,8 @@ if has("termguicolors") && has("nvim")
     set termguicolors
 endif
 if isdirectory(dircolors)
-    colorscheme gruvbox
-    " colorscheme NeoSolarized
+    " colorscheme gruvbox
+    colorscheme NeoSolarized
     " colorscheme lizard
     " colorscheme obsidian
     " colorscheme zenburn
