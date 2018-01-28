@@ -42,9 +42,9 @@ curl -OL https://sourceforge.net/projects/levent/files/libevent/libevent-2.0/lib
   && sudo make install
 
 # DOWNLOAD SOURCES FOR TMUX AND MAKE AND INSTALL
-curl -OL https://github.com/tmux/tmux/releases/download/2.1/tmux-2.1.tar.gz \
-  && tar -xvzf tmux-2.1.tar.gz \
-  && cd tmux-2.1 \
+curl -OL https://github.com/tmux/tmux/releases/download/2.6/tmux-2.6.tar.gz \
+  && tar -xvzf tmux-2.6.tar.gz \
+  && cd tmux-2.6 \
   && LDFLAGS="-L/usr/local/lib -Wl,-rpath=/usr/local/lib" ./configure --prefix=/usr/local \
   && make \
   && sudo make install
