@@ -124,6 +124,8 @@ Plug 'stephenway/postcss.vim'
 Plug 'vim-scripts/nginx.vim'
 Plug 'w0rp/ale'
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+Plug 'jparise/vim-graphql'
+Plug 'styled-components/vim-styled-components'
 
 " (Optional) Multi-entry selection UI.
 " Plug 'junegunn/fzf'
@@ -161,7 +163,9 @@ let g:netrw_liststyles=3
 let g:jedi#popup_on_dot = 0
 let g:jedi#force_py_version = 3
 let g:deoplete#enable_at_startup = 1
-let g:python3_host_prog = '/usr/bin/python3'
+let g:deoplete#sources#jedi#python_path = '/usr/local/bin/python3'
+let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python_host_prog = '/usr/bin/python'
 let g:neosolarized_contrast = "low"
 let g:airline_theme = "molokai"
 
@@ -195,8 +199,8 @@ if has("termguicolors") && has("nvim")
     set termguicolors
 endif
 if isdirectory(dircolors)
-    " colorscheme gruvbox
-    colorscheme NeoSolarized
+    colorscheme gruvbox
+    " colorscheme NeoSolarized
     " colorscheme lizard
     " colorscheme obsidian
     " colorscheme zenburn
