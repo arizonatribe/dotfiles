@@ -7,10 +7,10 @@ set path+=**
 
 set relativenumber
 set clipboard=unnamed
-set tabstop=4
+set tabstop=2
 set softtabstop=0
 set expandtab
-set shiftwidth=4
+set shiftwidth=2
 set textwidth=80
 set hlsearch
 set number
@@ -18,7 +18,7 @@ set title
 set wildignore+=*/node_modules/*,*.so,*.swp
 set autoindent
 set copyindent
-set shiftwidth=4
+set shiftwidth=2
 
 let homevim = $HOME . "/.local/share/nvim/"
 let dirsite = homevim . "site"
@@ -76,8 +76,12 @@ noremap <leader>gb :Gblame<CR>
 " noremap <leader>gd :Gdiff<CR>
 noremap <leader>df :Gdiff<CR>
 
-nnoremap <silent>K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent>gd :call LanguageClient_textDocument_definition()<CR>
+"Show type info (and short doc) of identifier under cursor.
+nnoremap <silent> <cr> :call LanguageClient_textDocument_hover()<cr>
+"gd Show type info (and short doc) of identifier under cursor.
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
+"gf Formats code in normal mode
+nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
 nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
 inoremap <up> <nop>
@@ -105,31 +109,40 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-surround'
-Plug 'vim-scripts/CursorLineCurrentWindow'
-Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'roxma/nvim-completion-manager'
 Plug 'ervandew/supertab'
-Plug 'davidhalter/jedi-vim'
+Plug 'vim-scripts/CursorLineCurrentWindow'
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-tmux'
+Plug 'ncm2/ncm2-path'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
-Plug 'heavenshell/vim-jsdoc'
-
-" Programming Language syntax highlighting
-Plug 'hail2u/vim-css3-syntax'
-Plug 'jelera/vim-javascript-syntax'
-Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
-Plug 'sheerun/vim-polyglot'
-Plug 'reasonml-editor/vim-reason-plus'
-Plug 'stephenway/postcss.vim'
-Plug 'vim-scripts/nginx.vim'
-Plug 'w0rp/ale'
-Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-Plug 'jparise/vim-graphql'
-Plug 'styled-components/vim-styled-components'
-
+Plug 'Shougo/denite.nvim'
 " (Optional) Multi-entry selection UI.
 " Plug 'junegunn/fzf'
-Plug 'Shougo/denite.nvim'
+
+" Programming Language syntax highlighting
+Plug 'w0rp/ale'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
+Plug 'carlitux/deoplete-ternjs'
+Plug 'wokalski/autocomplete-flow'
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'heavenshell/vim-jsdoc'
+Plug 'davidhalter/jedi-vim'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'sheerun/vim-polyglot'
+Plug 'flowtype/vim-flow'
+Plug 'stephenway/postcss.vim'
+Plug 'vim-scripts/nginx.vim'
+Plug 'jparise/vim-graphql'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+
 
 if executable("curl")
   Plug 'mattn/webapi-vim'
@@ -141,7 +154,9 @@ call plug#end()
 nmap <silent>:E<cr> :NERDTreeToggle<CR>
 nmap <silent>:Explore<cr> :NERDTreeToggle<CR>
 autocmd BufNewFile,BufRead *.less set filetype=less
-autocmd FileType less set omnifunc=csscomplete#CompleteCSS
+
+" An aggressive setting (keep in mind when debugging any potential sluggishness) https://jacky.wtf/weblog/language-client-and-neovim/
+autocmd BufEnter  *  call ncm2#enable_for_buffer()
 autocmd Filetype gitcommit setlocal spell textwidth=72
 autocmd BufRead,BufNewFile */supervisor/*.conf setf dosini
 autocmd BufRead,BufNewFile supervisor.conf setf dosini
@@ -153,19 +168,44 @@ autocmd BufRead,BufNewFile */usr/local/nginx/conf/*.conf setf nginx
 
 filetype plugin indent on
 
+set omnifunc=syntaxcomplete#Complete
 set nofoldenable
+set completeopt=noinsert,menuone,noselect
 
+let g:jsx_ext_required = 0
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
 let g:used_javascript_libs = 'ramda,d3,react,jasmine,flux'
+let g:flow#autoclose = 1
+let g:flow#timeout = 5
+let g:prettier#exec_cmd_async = 1
+
 let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:netrw_liststyles=3
 let g:jedi#popup_on_dot = 0
 let g:jedi#force_py_version = 3
+
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#jedi#python_path = '/usr/local/bin/python3'
+let g:deoplete#enable_ignore_case = 1
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#enable_camel_case = 1
+let g:deoplete#enable_refresh_always = 1
+let g:deoplete#max_abbr_width = 0
+let g:deoplete#max_menu_width = 0
+let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
+let g:neosnippet#enable_completed_snippet = 1
+
+let g:tern_request_timeout = 1
+let g:tern_request_timeout = 6000
+let g:tern#command = ["tern"]
+let g:tern#arguments = ["--persistent"]
+
 let g:python3_host_prog = '/usr/local/bin/python3'
 let g:python_host_prog = '/usr/bin/python'
+let g:python_host_skip_check = 1
+let g:python3_host_skip_check = 1
+
 let g:neosolarized_contrast = "low"
 let g:airline_theme = "molokai"
 
@@ -178,16 +218,17 @@ let g:prettier#config#trailing_comma = 'none'
 let g:prettier#config#parser = 'babylon'
 
 let g:LanguageClient_serverCommands = {
-    \ 'reason': ['ocaml-language-server', '--stdio'],
-    \ 'ocaml': ['ocaml-language-server', '--stdio'],
-    \ }
-let g:LanguageClient_autoStart = 1
+    \ 'javascript': ['flow-language-server', '--stdio'],
+\ }
+
 let b:ale_linters = {
     \ 'python': ['flake8', 'pylint'],
-    \ 'javascript': ['eslint'],
+    \ 'javascript': ['flow', 'flow-language-server', 'eslint'],
+    \ 'css': ['stylelint'],
 \}
 let g:ale_fixers = {
-    \ 'javascript': ['eslint']
+    \ 'javascript': ['remove_trailing_lines', 'trim_whitespace', 'eslint'],
+    \ 'css': ['stylelint'],
 \}
 let g:ale_fix_on_save = 1
 
