@@ -109,6 +109,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-surround'
+Plug 'christoomey/vim-conflicted'
 Plug 'ervandew/supertab'
 Plug 'vim-scripts/CursorLineCurrentWindow'
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
@@ -118,24 +119,17 @@ Plug 'ncm2/ncm2-tmux'
 Plug 'ncm2/ncm2-path'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
 Plug 'Shougo/denite.nvim'
-" (Optional) Multi-entry selection UI.
-" Plug 'junegunn/fzf'
 
 " Programming Language syntax highlighting
 Plug 'w0rp/ale'
 Plug 'hail2u/vim-css3-syntax'
-Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
-Plug 'carlitux/deoplete-ternjs'
+Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'css', 'less', 'scss', 'json', 'graphql'] }
+" Plug 'jelera/vim-javascript-syntax'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'wokalski/autocomplete-flow'
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'davidhalter/jedi-vim'
-Plug 'jelera/vim-javascript-syntax'
 Plug 'sheerun/vim-polyglot'
 Plug 'flowtype/vim-flow'
 Plug 'stephenway/postcss.vim'
@@ -180,20 +174,11 @@ let g:flow#autoclose = 1
 let g:flow#timeout = 5
 let g:prettier#exec_cmd_async = 1
 
-let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:ackprg = 'ag --nogroup --column'
 let g:netrw_liststyles=3
 let g:jedi#popup_on_dot = 0
 let g:jedi#force_py_version = 3
 
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#jedi#python_path = '/usr/local/bin/python3'
-let g:deoplete#enable_ignore_case = 1
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#enable_camel_case = 1
-let g:deoplete#enable_refresh_always = 1
-let g:deoplete#max_abbr_width = 0
-let g:deoplete#max_menu_width = 0
-let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
 let g:neosnippet#enable_completed_snippet = 1
 
 let g:tern_request_timeout = 1
@@ -210,27 +195,27 @@ let g:neosolarized_contrast = "low"
 let g:airline_theme = "molokai"
 
 let g:prettier#exec_cmd_async = 1
-let g:prettier#config#print_width = 80
-let g:prettier#config#tab_width = 4
+let g:prettier#config#print_width = 120
+let g:prettier#config#tab_width = 2
 let g:prettier#config#semi = 'false'
 let g:prettier#config#single_quote = 'true'
 let g:prettier#config#trailing_comma = 'none'
-let g:prettier#config#parser = 'babylon'
+let g:prettier#config#parser = 'flow'
 
-let g:LanguageClient_serverCommands = {
-    \ 'javascript': ['flow-language-server', '--stdio'],
-\ }
-
-let b:ale_linters = {
-    \ 'python': ['flake8', 'pylint'],
-    \ 'javascript': ['flow', 'flow-language-server', 'eslint'],
-    \ 'css': ['stylelint'],
-\}
-let g:ale_fixers = {
-    \ 'javascript': ['remove_trailing_lines', 'trim_whitespace', 'eslint'],
-    \ 'css': ['stylelint'],
-\}
+let g:LanguageClient_serverCommands = {'javascript': ['flow-language-server', '--stdio']}
+let b:ale_linters = {'python': ['flake8', 'pylint'], 'javascript': ['flow', 'flow-language-server', 'eslint'], 'css': ['stylelint']}
+let g:ale_fixers = {'javascript': ['remove_trailing_lines', 'trim_whitespace', 'eslint'], 'css': ['stylelint']}
 let g:ale_fix_on_save = 1
+let g:ale_sign_warning = '⚡️'
+let g:ale_completion_enabled = 0
+let g:ale_set_balloons = 1
+let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_javascript_prettier_options = '--single-quote --trailing-comma none --parser flow --semi false --print-width 120 --tab-width 2'
+let g:ale_statusline_format = ['{%d} error(s)', '{%d} warning(s)', '']
+let g:ale_lint_on_text_changed = 'normal' " Slows down things if it's always linting
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%: "%code%"] %s [%severity%]'
 
 set t_Co=256
 set background=dark
