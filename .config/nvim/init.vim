@@ -120,6 +120,9 @@ Plug 'ncm2/ncm2-path'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'Shougo/denite.nvim'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': '~/.local/share/nvim/plugged/gocode/nvim/symlink.sh' }
 
 " Programming Language syntax highlighting
 Plug 'w0rp/ale'
@@ -186,7 +189,7 @@ let g:tern_request_timeout = 6000
 let g:tern#command = ["tern"]
 let g:tern#arguments = ["--persistent"]
 
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python3_host_prog = '/usr/bin/python3'
 let g:python_host_prog = '/usr/bin/python'
 let g:python_host_skip_check = 1
 let g:python3_host_skip_check = 1

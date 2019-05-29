@@ -172,11 +172,14 @@ PS1='\['$IYellow'\](\u)\['$IGreen'\]\h\['$BIYellow'\]:\['$Cyan'\]\w\['$Color_Off
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
-# export GOPATH="$HOME/projects/src"
-# export GOBIN="$HOME/projects/bin"
-# export PATH=$PATH:/usr/local/go/bin
+export GOARCH="amd64"
+export GOOS="linux"
+export GOPATH="$HOME/go"
+export GOBIN="$GOPATH/bin"
+export PATH=$PATH:/usr/local/go/bin
+export PATH="$PATH:$GOBIN"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-# eval $(opam config env)
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
