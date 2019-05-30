@@ -30,8 +30,8 @@ let dirundo = homevim . "undo"
 let dirswap = homevim . "swap"
 
 " Load vim-plug
-if !isdirectory(homevim)
-    call mkdir(homevim)
+if !isdirectory(dirsite)
+    call mkdir(dirsite, "p")
 endif
 if !isdirectory(dircolors)
     if isdirectory(dirplugins . "/vim-colorschemes")
