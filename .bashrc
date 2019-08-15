@@ -171,12 +171,12 @@ PS1='\['$IYellow'\](\u)\['$IGreen'\]\h\['$BIYellow'\]:\['$Cyan'\]\w\['$Color_Off
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-
-# export GOPATH="$HOME/projects/src"
-# export GOBIN="$HOME/projects/bin"
-# export PATH=$PATH:/usr/local/go/bin
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-# eval $(opam config env)
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion || {
+  # if not found in /usr/local/etc, try the brew --prefix location
+  [ -f "$(brew --prefix)/etc/bash_completion.d/git-completion.bash" ] && \
+      . $(brew --prefix)/etc/bash_completion.d/git-completion.bash
+}
