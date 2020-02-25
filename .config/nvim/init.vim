@@ -19,6 +19,7 @@ set wildignore+=*/node_modules/*,*.so,*.swp
 set autoindent
 set copyindent
 set shiftwidth=2
+set redrawtime=10000
 
 let homevim = $HOME . "/.local/share/nvim/"
 let dirsite = homevim . "site"

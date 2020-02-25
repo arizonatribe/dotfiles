@@ -172,11 +172,24 @@ PS1='\['$IYellow'\](\u)\['$IGreen'\]\h\['$BIYellow'\]:\['$Cyan'\]\w\['$Color_Off
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+export PATH="/usr/local/sbin:$PATH"
+export PATH=/usr/local/Cellar/python/3.7.4_1/bin:$PATH
+export KUBERNETES_PROVIDER=aws
+export KUBE_AWS_ZONE=us-east-1
+export AWS_ACCESS_KEY_ID="<super_secret_id>"
+export AWS_SECRET_ACCESS_KEY="<super_secret_key"
+export AWS_USERNAME="<no_so_secret_username>"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+source <(kubectl completion bash)
 
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion || {
   # if not found in /usr/local/etc, try the brew --prefix location
   [ -f "$(brew --prefix)/etc/bash_completion.d/git-completion.bash" ] && \
       . $(brew --prefix)/etc/bash_completion.d/git-completion.bash
 }
+
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
+eval "$(thefuck --alias)"
