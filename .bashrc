@@ -177,6 +177,9 @@ export NVM_DIR="$HOME/.nvm"
 # export PATH=$PATH:/usr/local/go/bin
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-# eval $(opam config env)
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+ . $(brew --prefix)/etc/bash_completion
+fi
+
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
