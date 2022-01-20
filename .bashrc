@@ -180,6 +180,7 @@ export GOROOT="/usr/local/go"
 export GOPATH="$HOME/go"
 export PATH=$PATH:$GOROOT/bin 
 export BASH_SILENCE_DEPRECATION_WARNING=1
+export MYVIMRC="$HOME/.config/nvim/init.vim"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
