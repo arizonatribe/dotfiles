@@ -94,16 +94,14 @@ set shiftwidth=2
 set smarttab
 set backspace=2
 set nojoinspaces
-set textwidth=120
+set textwidth=0
 set autoindent
 set copyindent
 
 " wrapping / line length
 set linebreak
 set wrap
-autocmd VimResized * | set columns=80
-set textwidth=80
-set colorcolumn=+1
+autocmd VimResized * | set columns=120
 
 " create interstitial directories when saving files
 augroup CreateDirsOnSave
