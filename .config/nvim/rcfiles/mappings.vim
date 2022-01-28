@@ -94,12 +94,6 @@ nnoremap <leader>, :silent! bp<cr>
 nnoremap <leader>. :silent! bn<cr>
 nnoremap <leader>; :silent! bd<cr>
 
-" resize splits
-nnoremap <silent> <c-y> :exe "vertical resize -1"<cr>
-nnoremap <silent> <c-o> :exe "vertical resize +1"<cr>
-nnoremap <silent> <c-u> :exe "resize -1"<cr>
-nnoremap <silent> <c-i> :exe "resize +1"<cr>
-
 " delete surrounding function
 nmap <silent> dsf ds)db
 
