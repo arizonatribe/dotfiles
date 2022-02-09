@@ -83,14 +83,14 @@ set splitright
 " gutters
 set number
 set numberwidth=5
-set number norelativenumber
+set relativenumber
 set signcolumn=yes
 
 " whitespace
-set tabstop=2
+set tabstop=4
 set softtabstop=0
 set expandtab
-set shiftwidth=2
+set shiftwidth=4
 set smarttab
 set backspace=2
 set nojoinspaces

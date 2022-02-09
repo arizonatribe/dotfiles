@@ -51,9 +51,7 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 
-nnoremap <leader>f :Files<CR> 
 nnoremap <silent> <leader>n :NERDTreeFind<CR>
-nnoremap <C-p> :Files<Cr>
 
 " For self-discipline (don't use/abuse arrow keys and traditions word processor conventions)
 " inoremap <up> <nop>
