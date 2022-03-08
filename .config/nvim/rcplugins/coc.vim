@@ -5,6 +5,7 @@ let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ 'coc-tailwindcss',
   \ 'coc-svelte',
+  \ 'coc-go',
   \ 'coc-html',
   \ 'coc-yaml',
   \ 'coc-vimlsp',
