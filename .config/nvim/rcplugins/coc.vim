@@ -40,6 +40,7 @@ function! s:check_eslint()
 endfunction
 
 autocmd BufEnter *.{js,jsx,ts,tsx} :call <SID>check_eslint()
+autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
 
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
@@ -147,7 +148,7 @@ command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 " use `:OR` for organize import of current buffer
-command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 OR :silent call CocAction('runCommand', 'editor.action.organizeImport')
 
 " Show all diagnostics
 nnoremap <silent> <space>d :<c-u>CocList diagnostics<cr>

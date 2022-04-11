@@ -1,6 +1,13 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+# User specific aliases and functions
+if [ -d ~/.bashrc.d ]; then
+	for rc in ~/.bashrc.d/*; do
+		if [ -f "$rc" ]; then
+			. "$rc"
+		fi
+	done
+fi
+
+unset rc
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -170,10 +177,21 @@ git_branch() {
 PS1='\['$IYellow'\](\u)\['$IGreen'\]\h\['$BIYellow'\]:\['$Cyan'\]\w\['$Color_Off'\]\['$IRed'\]$(git_branch)\n\['$Ketchup'\]# '
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+  . "$NVM_DIR/nvm.sh"
+fi
+if [ -s "$NVM_DIR/bash_completion" ]; then
+  . "$NVM_DIR/bash_completion"
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
 export PATH="/usr/local/sbin:$PATH"
-export PATH=/usr/local/Cellar/python/3.7.4_1/bin:$PATH
+# export PATH=/usr/local/Cellar/python/3.7.4_1/bin:$PATH
+export PATH=$PATH:"$HOME/.yarn/bin"
 export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden -g '!**/node_modules' -g '!**/docs'"
 export GOBIN="$HOME/go/bin"
 export GOROOT="/usr/local/go"
@@ -182,12 +200,15 @@ export PATH=$PATH:$GOROOT/bin
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export MYVIMRC="$HOME/.config/nvim/init.vim"
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
+if [ -f ~/.fzf.bash ]; then
+  . ~/.fzf.bash
+fi
+if [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]]; then
+  . /usr/local/etc/profile.d/bash_completion.sh
+fi
+. "$HOME/.cargo/env"
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
  . $(brew --prefix)/etc/bash_completion
 fi
 
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-
-eval "$(thefuck --alias)"

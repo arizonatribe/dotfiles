@@ -58,3 +58,9 @@ This configuration file sets up plugins and you need setup the plugin manager. S
 2. Now that vim is open and the plugin manager installed, enter the vim command `:PlugInstall` and hit enter (this process may take a minute to install all the plugins)
 3. After closing vim, you can re-open one last time (this final step will pull the color scheme files into the `~/.vim/colors/` directory
 
+
+## Language Servers
+
+```
+go install golang.org/x/tools/gopls@latest
+```

@@ -6,6 +6,17 @@ map <down> <nop>
 map <left> <nop>
 map <right> <nop>
 
+" For self-discipline (don't use/abuse arrow keys and traditions word processor conventions)
+" inoremap <up> <nop>
+" inoremap <down> <nop>
+" inoremap <left> <nop>
+" inoremap <right> <nop>
+" inoremap <del> <nop>
+" nnoremap <left> <nop>
+" nnoremap <right> <nop>
+" nnoremap <up> <nop>
+" nnoremap <down> <nop>
+
 " Git
 noremap <leader>gb :Git blame<CR>
 noremap <leader>df :Gdiff<CR>
@@ -13,6 +24,8 @@ noremap <leader>df :Gdiff<CR>
 " NERDTree (file browser)
 nmap <silent>:E<cr> :NERDTreeToggle<CR>
 nmap <silent>:Explore<cr> :NERDTreeToggle<CR>
+" Navigate to the currently open file in the file explorer
+nnoremap <silent> <leader>n :NERDTreeFind<CR>
 
 " Use <c-space> to trigger completion.
 if has('nvim')
@@ -31,38 +44,35 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+"
+" Formatting selected code.
+nmap <silent> gf <Plug>(coc-format-selected)
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Run the Code Lens action on the current line.
+nmap <leader>cl  <Plug>(coc-codelens-action)"
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
 
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-" Formatting selected code.
-nmap <silent> gf <Plug>(coc-format-selected)
-
-" Run the Code Lens action on the current line.
-nmap <leader>cl  <Plug>(coc-codelens-action)"
-
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-nnoremap <silent> <leader>n :NERDTreeFind<CR>
-
-" For self-discipline (don't use/abuse arrow keys and traditions word processor conventions)
-" inoremap <up> <nop>
-" inoremap <down> <nop>
-" inoremap <left> <nop>
-" inoremap <right> <nop>
-" inoremap <del> <nop>
-" nnoremap <left> <nop>
-" nnoremap <right> <nop>
-" nnoremap <up> <nop>
-" nnoremap <down> <nop>
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+" inoremap <silent><expr> <cr>
+"   \ pumvisible()
+"   \ ? coc#_select_confirm()
+"   \ : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Mappings (based on https://github.com/WilHall/.dotfiles/blob/main/.vim/rcfiles/mappings.vim)
 
