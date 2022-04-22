@@ -1,0 +1,14 @@
+{
+  "coc.preferences.useQuickfixForLocations": true,
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.work", "go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"],
+      "initializationOptions": {
+        "completeUnimported": true,
+        "usePlaceholders": true
+      }
+    }
+  }
+}
