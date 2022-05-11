@@ -7,16 +7,32 @@ Configuration files for Vim, Tmux, Bash, and others
 For Vim/Neovim to work properly on grep (searching), two plugins are needed:
 
 ```
-sudo dnf install -y the_silver_searcher ripgrep
+sudo dnf install -y the_silver_searcher ripgrep bash-completion
 ```
  
-## Vim Instructions
+## Rust
 
-This configuration file sets up plugins and you need setup the plugin manager. Several installation steps will happen automatically, you just need to open vim to trigger the steps:
+Rust (and tmux) has a few dependencies which may or may not already be present on the machine (adjust accordingly).
 
-1. Open neovim/vim via the `nvim` command.
-2. Enter the vim command `:UpdateRemotePlugins` and hit enter
-3. Next, enter the vim command `:PlugInstall` and hit enter (this process may take a minute to install all the plugins)
+- cmake
+- gcc
+- clang
+- make
+
+```
+sudo dnf install \
+  cmake \
+  ncurses-devel \
+  gcc \
+  clang \
+  make
+```
+
+After the dependencies have been installed you can install Rust:
+
+```
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
 
 ## TMUX
 
@@ -24,7 +40,7 @@ Some of the plugins used in the `.tmux.conf` require a minimum of version 2.1 of
 
 ```bash
 # DOWNLOAD SOURCES FOR LIBEVENT AND MAKE AND INSTALL
-curl -OL https://sourceforge.net/projects/levent/files/libevent/libevent-2.0/libevent-2.0.22-stable.tar.gz \
+curl -OL https://sourceforge.net/projects/levent/files/release-2.0.22-stable/libevent-2.0.22-stable.tar.gz \
   && tar -xvzf libevent-2.0.22-stable.tar.gz \
   && cd libevent-2.0.22-stable \
   && ./configure --prefix=/usr/local \
@@ -93,36 +109,13 @@ yarn global add \
   emoj
 ```
 
-## Rust
-
-Rust has a few dependencies which may or may not already be present on the machine (adjust accordingly).
-
-- cmake
-- gcc
-- clang
-- make
-
-```
-sudo dnf install \
-  cmake \
-  gcc \
-  clang \
-  make
-```
-
-After the dependencies have been installed you can install Rust:
-
-```
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-```
-
 ## Golang
 
 Go (version number may differ)
 
-```
-$ curl https://go.dev/dl/go1.17.7.linux-amd64.tar.gz
-$ tar -xzf go1.17.7.linux-amd64.tar.gz -C /usr/local
+```bash
+curl -OL https://go.dev/dl/go1.17.7.linux-amd64.tar.gz
+tar -xzf go1.17.7.linux-amd64.tar.gz -C /usr/local
 ```
 
 ## Language Servers
@@ -144,10 +137,10 @@ yarn global add \
 
 For setting up Rust's language server:
 
-```
-$ mkdir -p ~/.local/bin
-$ curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
-$ chmod +x ~/.local/bin/rust-analyzer
+```bash
+mkdir -p ~/.local/bin
+curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
+chmod +x ~/.local/bin/rust-analyzer
 ```
 
 And for setting up Golang's language server:
@@ -166,6 +159,24 @@ require'lspconfig'.rust_analyzer.setup{}
 require'lspconfig'.pyright.setup{}
 require'lspconfig'.gopls.setup{}
 ```
+
+## Install Neovim
+
+Neovim can be installed directly from the [Github releases](https://github.com/neovim/neovim/releases) page or via a package manager. For example, on Fedora linux:
+
+```
+dnf install neovim
+```
+
+Optionally, the AppImage can be downloaded and installed from the Github releases.
+
+## Vim Instructions
+
+This configuration file sets up plugins and you need setup the plugin manager. Several installation steps will happen automatically, you just need to open vim to trigger the steps:
+
+1. Open neovim/vim via the `nvim` command.
+2. Enter the vim command `:UpdateRemotePlugins` and hit enter
+3. Next, enter the vim command `:PlugInstall` and hit enter (this process may take a minute to install all the plugins)
 
 ## TODO
 
