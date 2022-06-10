@@ -1,78 +1,83 @@
--- Copy and paste with system clipboard
+local function map(mode, lhs, rhs, opts)
+  local options = {noremap = true}
+  if opts then options = vim.tbl_extend('force', options, opts) end
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
 
-vim.api.nvim_set_keymap('v', '<C-c>', '"+y',    {noremap = true})
-vim.api.nvim_set_keymap('i', '<C-v>', '<C-r>+', {noremap = true})
+map('', '<leader>c', '"+y') -- Copy to clipboard in normal mode
+map('n', '<C-l>', '<cmd>noh<CR>')    -- Clear highlights
+
+-- Copy and paste with system clipboard
+map('v', '<C-c>', '"+y')
+map('i', '<C-v>', '<C-r>+')
 
 -- disable arrow keys in normal mode
-vim.api.nvim_set_keymap('n', '<up>', '<nop>')
-vim.api.nvim_set_keymap('n', '<down>', '<nop>')
-vim.api.nvim_set_keymap('n', '<left>', '<nop>')
-vim.api.nvim_set_keymap('n', '<right>', '<nop>')
+map('n', '<up>', '<nop>')
+map('n', '<down>', '<nop>')
+map('n', '<left>', '<nop>')
+map('n', '<right>', '<nop>')
 
 -- Git
-vim.api.nvim_set_keymap('n', '<leader>gb', ':Git blame<CR>', {noremap= true})
-vim.api.nvim_set_keymap('n', '<leader>df', ':Gdiff<CR>', {noremap = true})
+map('n', '<leader>gb', ':Git blame<CR>')
+map('n', '<leader>df', ':Gdiff<CR>')
 
 -- NERDTree (file browser)
-vim.api.nvim_set_keymap('n', '<silent>:E<cr>', ':NERDTreeToggle<CR>', {noremap= true})
-vim.api.nvim_set_keymap('n', '<silent>:Explore<cr>', ':NERDTreeToggle<CR>', {noremap = true})
-
--- Navigate to the currently open file in the file explorer
-vim.api.nvim_set_keymap('n', '<silent>', '<leader>n :NERDTreeFind<CR>', {noremap = true})
+map('n', ':E<cr>', ':NERDTreeToggle<CR>')
+map('n', ':Explore<cr>', ':NERDTreeToggle<CR>')
 
 -- Use <c-space> to trigger completion.
-vim.api.nvim_set_keymap('n', '<silent><expr>', '<c-space> coc#refresh()', { noremap = true})
+map('n', '<silent><expr>', '<c-space> coc#refresh()')
 
 -- Use `[g` and `]g` to navigate diagnostics
 -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-vim.api.nvim_set_keymap('n', '<silent>', '[g <Plug>(coc-diagnostic-prev)', {noremap = true})
-vim.api.nvim_set_keymap('n', '<silent>', ']g <Plug>(coc-diagnostic-next)', {noremap = true})
+map('n', '<silent>', '[g <Plug>(coc-diagnostic-prev)')
+map('n', '<silent>', ']g <Plug>(coc-diagnostic-next)')
 
 -- GoTo code navigation.
-vim.api.nvim_set_keymap('n', '<silent>', 'gd <Plug>(coc-definition)', {noremap = true})
-vim.api.nvim_set_keymap('n', '<silent>', 'gy <Plug>(coc-type-definition)', {noremap = true})
-vim.api.nvim_set_keymap('n', '<silent>', 'gi <Plug>(coc-implementation)', {noremap = true})
-vim.api.nvim_set_keymap('n', '<silent>', 'gr <Plug>(coc-references)', {noremap = true})
+map('n', '<silent>', 'gd <Plug>(coc-definition)')
+map('n', '<silent>', 'gy <Plug>(coc-type-definition)')
+map('n', '<silent>', 'gi <Plug>(coc-implementation)')
+map('n', '<silent>', 'gr <Plug>(coc-references)')
 
 -- Formatting selected code.
-vim.api.nvim_set_keymap('n', '<silent>', 'gf <Plug>(coc-format-selected)', {noremap = true})
+map('n', '<silent>', 'gf <Plug>(coc-format-selected)')
 -- Remap keys for applying codeAction to the current buffer.
-vim.api.nvim_set_keymap('n', '<leader>ac', ' <Plug>(coc-codeaction)', {noremap = true})
+map('n', '<leader>ac', ' <Plug>(coc-codeaction)')
 -- Run the Code Lens action on the current line.
-vim.api.nvim_set_keymap('n', '<leader>cl', ' <Plug>(coc-codelens-action)', {noremap = true})
+map('n', '<leader>cl', ' <Plug>(coc-codelens-action)')
 -- Apply AutoFix to problem on the current line.
-vim.api.nvim_set_keymap('n', '<leader>qf', ' <Plug>(coc-fix-current)', {noremap = true})
+map('n', '<leader>qf', ' <Plug>(coc-fix-current)')
 
 -- Mappings (based on https://github.com/WilHall/.dotfiles/blob/main/.vim/rcfiles/mappings.vim)
 
 -- fold, unfold
-vim.api.nvim_set_keymap('n', '<leader>ff', 'za', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>FF', 'zA', {noremap = true})
+map('n', '<leader>ff', 'za')
+map('n', '<leader>FF', 'zA')
 
 -- Maps for folding, unfolding all
-vim.api.nvim_set_keymap('n', '<leader>fa', 'zM<cr>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>Fa', 'zR<cr>', {noremap = true})
+map('n', '<leader>fa', 'zM<cr>')
+map('n', '<leader>Fa', 'zR<cr>')
 
 -- Marks
-vim.api.nvim_set_keymap('n', 'm<leader>', ':delmarks a-zA-Z0-9<cr>', {noremap = true})
+map('n', 'm<leader>', ':delmarks a-zA-Z0-9<cr>')
 
 -- shortcuts for substitutions
-vim.api.nvim_set_keymap('n', '<leader>sg', ':%s///g<left><left>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>sl', ':s///g<left><left>', {noremap = true})
+map('n', '<leader>sg', ':%s///g<left><left>')
+map('n', '<leader>sl', ':s///g<left><left>')
 
 -- Make double-<Esc> clear search highlights
-vim.api.nvim_set_keymap('n', '<silent>', '<esc><esc> <esc>:nohlsearch<cr><esc>', {noremap = true})
+map('n', '<silent>', '<esc><esc> <esc>:nohlsearch<cr><esc>')
 
 -- shortcut to edit file in the same directory as the current file
-vim.api.nvim_set_keymap('n', '<leader>e', ':e <c-r>=expand('%:p:h') . '/'<cr>', {noremap = true})
+-- map('n', '<leader>e', ':e <c-r>=expand('%:p:h') . '/'<cr>')
 
 -- buffer navigation
-vim.api.nvim_set_keymap('n', '<leader>,', ':silent! bp<cr>', {noremap= true})
-vim.api.nvim_set_keymap('n', '<leader>.', ':silent! bn<cr>', {noremap= true})
-vim.api.nvim_set_keymap('n', '<leader>;', ':silent! bd<cr>', {noremap= true})
+map('n', '<leader>,', ':silent! bp<cr>')
+map('n', '<leader>.', ':silent! bn<cr>')
+map('n', '<leader>;', ':silent! bd<cr>')
 
 -- delete surrounding function
-vim.api.nvim_set_keymap('n', '<silent>', 'dsf ds)db', {noremap = true})
+map('n', '<silent>', 'dsf ds)db')
 
 -- write current buffer to the clipboard
-vim.api.nvim_set_keymap('n', '<silent>', '<leader>cc :w !pbcopy<cr><cr>', {noremap = true})
+map('n', '<silent>', '<leader>cc :w !pbcopy<cr><cr>')

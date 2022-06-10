@@ -89,24 +89,34 @@ return require("packer").startup(function()
     use('christoomey/vim-tmux-navigator')
 
     -- File browser
+    -- use('scrooloose/nerdtree')
     use({
         'scrooloose/nerdtree',
-        cmd = 'NERDTreeToggle',
+        run = 'NERDTreeToggle',
     })
 
     -- Auto-completion and syntax support
-    use({
-        'neoclide/coc.nvim',
-        config = config('coc'),
-        branch = 'release',
-    })
+    -- use({
+    --     'neoclide/coc.nvim',
+    --     config = config('coc'),
+    --     branch = 'release',
+    -- })
 
     -- Fuzzy search
     use({
         'junegunn/fzf',
-        run = function() vim.fn["fzf#install"] end
+        config = config('fzf'),
+        run = ":call fzf#install()",
     })
     use('junegunn/fzf.vim')
+
+    -- Pop-up window shows possible key combinations as you type
+    use {
+      "folke/which-key.nvim",
+      config = function()
+        require("which-key").setup {}
+      end
+    }
 
     -- JavaScript(ish) syntax support
     use({

@@ -1,62 +1,64 @@
-local lfs = require("lfs")
-
 local home = os.getenv("HOME")
-local homevim = home + "/.local/share/nvim/"
-local myvimrc = home + "/.config/nvim/init.vim"
-local dirsite = homevim + "site"
-local dirplugins = homevim + "plugged"
-local dirautoload = dirsite + "/autoload"
-local autoload_plug_file = dirautoload + "/plug.vim"
-local dircolors = homevim + "colors"
-local dirbackup = homevim + "backup"
-local dirundo = homevim + "undo"
-local dirswap = homevim + "swap"
+local homevim = home .. "/.local/share/nvim/"
+local myvimrc = home .. "/.config/nvim/init.vim"
+local dirsite = homevim .. "site"
+local dirplugins = homevim .. "plugged"
+local dirautoload = dirsite .. "/autoload"
+local autoload_plug_file = dirautoload .. "/plug.vim"
+local dircolors = home .. "/.config/nvim/colors"
+local dirbackup = homevim .. "backup"
+local dirundo = homevim .. "undo"
+local dirswap = homevim .. "swap"
 
+--- Check if a file or directory exists in this path
+function exists(file)
+   local ok, err, code = os.rename(file, file)
+   if not ok then
+      if code == 13 then
+         -- Permission denied, but it exists
+         return true
+      end
+   end
+   return ok, err
+end
+
+--- Check if a directory exists
+--- https://stackoverflow.com/questions/1340230/check-if-directory-exists-in-lua
 function isdirectory(path)
-  if (lfs.attributes(path, "mode") == "directory") then
-    return true
-  end
-  return false
+   return exists(path.."/")
 end
 
-function isfile(path)
-  if (lfs.attributes(path, "mode") == "file") then
-    return true
-  end
-  return false
+if not isdirectory(homevim) then
+    os.execute("mkdir " .. homevim)
 end
-
-if !isdirectory(homevim) then
-    lfs.mkdir(homevim)
+if not isdirectory(dirplugins) then
+    os.execute("mkdir " .. dirplugins)
 end
-if !isdirectory(dirplugins) then
-    lfs.mkdir(dirplugins)
+if not isdirectory(dirsite) then
+    os.execute("mkdir " .. dirsite)
 end
-if !isdirectory(dirsite) then
-    lfs.mkdir(dirsite)
+if not isdirectory(dirautoload) then
+    os.execute("mkdir " .. dirautoload)
 end
-if !isdirectory(dirautoload) then
-    lfs.mkdir(dirautoload)
-end
-if !isdirectory(dircolors) then
-    if isdirectory(dirplugins . "/vim-colorschemes") then
-        lfs.mkdir(dircolors)
-        os.execute("cp " + dirplugins + "/vim-colorschemes/colors/* " + dircolors)
+if not isdirectory(dircolors) then
+    if isdirectory(dirplugins .. "/vim-colorschemes") then
+        os.execute("mkdir " .. dircolors)
+        os.execute("cp " .. dirplugins .. "/vim-colorschemes/colors/* " .. dircolors)
     end
 end
 
-if !isdirectory(dirbackup) then
-    lfs.mkdir(dirbackup)
+if not isdirectory(dirbackup) then
+    os.execute("mkdir " .. dirbackup)
 end
-if !isdirectory(dirundo) then
-    lfs.mkdir(dirundo)
+if not isdirectory(dirundo) then
+    os.execute("mkdir " .. dirundo)
 end
-if !isdirectory(dirswap) then
-    lfs.mkdir(dirswap)
+if not isdirectory(dirswap) then
+    os.execute("mkdir " .. dirswap)
 end
 
 -- source core config files
 require("core")
-require("colors")
 require("mappings")
 require("plugins")
+require("colors")
