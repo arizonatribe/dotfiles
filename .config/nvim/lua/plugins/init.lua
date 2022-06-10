@@ -136,4 +136,7 @@ return require("packer").startup(function()
         'peitalin/vim-jsx-typescript',
         ft = {'typescript.tsx'},
     })
+
+    -- LSP
+    use('neovim/nvim-lspconfig')
 end)

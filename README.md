@@ -7,7 +7,11 @@ Configuration files for Vim, Tmux, Bash, and others
 For Vim/Neovim to work properly on grep (searching), two plugins are needed:
 
 ```
-sudo dnf install -y the_silver_searcher ripgrep
+sudo dnf install -y \
+  ripgrep \
+  the_silver_searcher \
+  dotnet-sdk-6.0 \
+  java-1.0.8-openjdk
 ```
  
 ## Vim Instructions
@@ -139,6 +143,11 @@ yarn global add \
   flow-bin \
   typescript \
   typescript-language-server \
+  bash-language-server \
+  dockerfile-language-server-nodejs \
+  graphql-language-service-cli \
+  intelephense \
+  yaml-language-server \
   pyright
 ```
 
@@ -148,6 +157,12 @@ For setting up Rust's language server:
 $ mkdir -p ~/.local/bin
 $ curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
 $ chmod +x ~/.local/bin/rust-analyzer
+```
+
+Setting up the Terraform language server:
+
+```
+$ dnf install terraform-ls
 ```
 
 And for setting up Golang's language server:
@@ -161,13 +176,13 @@ $ go install golang.org/x/tools/gopls@latest
 Configure the Language servers by importing this from the `$HOME/.config/nvim/init.lua`
 
 ```
+require'lspconfig'.bashls.setup{}
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.rust_analyzer.setup{}
 require'lspconfig'.pyright.setup{}
 require'lspconfig'.gopls.setup{}
+require'lspconfig'.dockerls.setup{}
+require'lspconfig'.graphql.setup{}
+require'lspconfig'.yamlls.setup{}
+require'lspconfig'.intelephense.setup{}
 ```
-
-## TODO
-
-* Install Java 8+
-* Install Python 3.8+ - Probably not needed for Mac/Linux since already installed.
