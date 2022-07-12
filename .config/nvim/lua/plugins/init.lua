@@ -18,6 +18,7 @@ return require("packer").startup(function()
     use_with_config('vim-airline/vim-airline', 'airline')
     use('vim-airline/vim-airline-themes')
     use('airblade/vim-gitgutter')
+    use_with_config("lewis6991/gitsigns.nvim", "gitsigns")
 
     -- Colorschemes
     use('flazz/vim-colorschemes')
@@ -25,6 +26,16 @@ return require("packer").startup(function()
         'sonph/onehalf',
         rtp = 'vim',
     })
+    use({
+        "sainnhe/edge", -- themes with light and dark variants
+        "rmehri01/onenord.nvim",
+        "folke/tokyonight.nvim",
+        "rose-pine/neovim",
+        "EdenEast/nightfox.nvim",
+    })
+
+    -- highlight color codes
+    use({ "RRethy/vim-hexokinase", config = config("hexokinase"), run = "make hexokinase" })
 
     -- Papal plugins
     use('tpope/vim-commentary')
@@ -88,19 +99,21 @@ return require("packer").startup(function()
     -- TMUX
     use('christoomey/vim-tmux-navigator')
 
-    -- File browser
-    -- use('scrooloose/nerdtree')
-    use({
-        'scrooloose/nerdtree',
-        run = 'NERDTreeToggle',
-    })
-
     -- Auto-completion and syntax support
-    -- use({
-    --     'neoclide/coc.nvim',
-    --     config = config('coc'),
-    --     branch = 'release',
-    -- })
+    use("ggandor/lightspeed.nvim") -- motion
+    use_with_config("dcampos/nvim-snippy", "snippy") -- snippets
+    use({
+        "hrsh7th/nvim-cmp", -- completion
+        requires = {
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+            "dcampos/cmp-snippy",
+            "hrsh7th/cmp-cmdline",
+            "andersevenrud/cmp-tmux",
+        },
+        config = config("cmp"),
+    })
 
     -- Fuzzy search
     use({
@@ -109,6 +122,43 @@ return require("packer").startup(function()
         run = ":call fzf#install()",
     })
     use('junegunn/fzf.vim')
+    use_with_config("ibhagwan/fzf-lua", "fzf") -- better lua version of fzf.vim
+
+    -- LSP
+    use('neovim/nvim-lspconfig')
+    use("folke/lua-dev.nvim") -- better sumneko_lua settings
+    use({
+        "glepnir/lspsaga.nvim",
+        branch = "main",
+        config = function()
+            local saga = require("lspsaga")
+
+            saga.init_lsp_saga({
+                -- your configuration
+            })
+        end,
+    })
+
+    -- simple access to json-language-server schemae
+    use('b0o/schemastore.nvim')
+
+    use_with_config("RRethy/vim-illuminate", "illuminate") -- highlights and allows moving between variable references
+
+    -- File browser
+    use({
+        'scrooloose/nerdtree',
+        run = 'NERDTreeToggle',
+    })
+    use({
+        "nvim-treesitter/nvim-treesitter",
+        run = ":TSUpdate",
+        config = config("treesitter"),
+    })
+    -- adds smart text objects
+    use("RRethy/nvim-treesitter-textsubjects")
+    use("windwp/nvim-ts-autotag") -- automatically close jsx tags
+    use("JoosepAlviste/nvim-ts-context-commentstring") -- makes jsx comments actually work
+    use_with_config("mizlan/iswap.nvim", "iswap") -- interactively swap function arguments
 
     -- Pop-up window shows possible key combinations as you type
     use {
@@ -136,7 +186,8 @@ return require("packer").startup(function()
         'peitalin/vim-jsx-typescript',
         ft = {'typescript.tsx'},
     })
+    use('jose-elias-alvarez/null-ls.nvim')
+    use('jose-elias-alvarez/typescript.nvim')
 
-    -- LSP
-    use('neovim/nvim-lspconfig')
+    use("nvim-lua/plenary.nvim")
 end)

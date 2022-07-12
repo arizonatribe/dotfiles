@@ -9,6 +9,7 @@ local dircolors = home .. "/.config/nvim/colors"
 local dirbackup = homevim .. "backup"
 local dirundo = homevim .. "undo"
 local dirswap = homevim .. "swap"
+local packerpath = dirsite .. "/pack/packer/start/packer.nvim"
 
 --- Check if a file or directory exists in this path
 function exists(file)
@@ -56,8 +57,12 @@ end
 if not isdirectory(dirswap) then
     os.execute("mkdir " .. dirswap)
 end
+if not exists(packerpath) then
+    vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', packerpath})
+end
 
 -- source core config files
+require("config")
 require("core")
 require("mappings")
 require("plugins")

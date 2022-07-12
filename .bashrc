@@ -196,9 +196,11 @@ export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden -g '!**/node_mod
 export GOBIN="$HOME/go/bin"
 export GOROOT="/usr/local/go"
 export GOPATH="$HOME/go"
-export PATH=$PATH:$GOROOT/bin 
 export BASH_SILENCE_DEPRECATION_WARNING=1
-export MYVIMRC="$HOME/.config/nvim/init.vim"
+export LUA_LSP_PATH="$HOME/tools/lua-language-server/bin"
+export PATH=$PATH:$GOBIN:$LUA_LSP_PATH:"$GOROOT/bin"
+export VIM_HOME="$HOME/.config/nvim/"
+export MYVIMRC="$VIM_HOME/init.lua"
 
 if [ -f ~/.fzf.bash ]; then
   . ~/.fzf.bash
@@ -212,3 +214,18 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 fi
 
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('$HOME/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "$HOME/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="$HOME/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<

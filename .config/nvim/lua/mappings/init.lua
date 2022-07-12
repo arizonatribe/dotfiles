@@ -4,6 +4,19 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+-- select last pasted text
+map('n', 'gb', '`[v`]')
+
+-- misc
+map('x', '>', '>gv')
+map('x', '<', '<gv')
+
+-- map('', 'vv', 'V')
+
+-- insert clipboard content without messing up indentation
+map('i', '<C-;>', '<C-r><C-p>*')
+map('c', '<C-;>', '<C-r><C-p>*')
+
 map('', '<leader>c', '"+y') -- Copy to clipboard in normal mode
 map('n', '<C-l>', '<cmd>noh<CR>')    -- Clear highlights
 
@@ -24,29 +37,6 @@ map('n', '<leader>df', ':Gdiff<CR>')
 -- NERDTree (file browser)
 map('n', ':E<cr>', ':NERDTreeToggle<CR>')
 map('n', ':Explore<cr>', ':NERDTreeToggle<CR>')
-
--- Use <c-space> to trigger completion.
-map('n', '<silent><expr>', '<c-space> coc#refresh()')
-
--- Use `[g` and `]g` to navigate diagnostics
--- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-map('n', '<silent>', '[g <Plug>(coc-diagnostic-prev)')
-map('n', '<silent>', ']g <Plug>(coc-diagnostic-next)')
-
--- GoTo code navigation.
-map('n', '<silent>', 'gd <Plug>(coc-definition)')
-map('n', '<silent>', 'gy <Plug>(coc-type-definition)')
-map('n', '<silent>', 'gi <Plug>(coc-implementation)')
-map('n', '<silent>', 'gr <Plug>(coc-references)')
-
--- Formatting selected code.
-map('n', '<silent>', 'gf <Plug>(coc-format-selected)')
--- Remap keys for applying codeAction to the current buffer.
-map('n', '<leader>ac', ' <Plug>(coc-codeaction)')
--- Run the Code Lens action on the current line.
-map('n', '<leader>cl', ' <Plug>(coc-codelens-action)')
--- Apply AutoFix to problem on the current line.
-map('n', '<leader>qf', ' <Plug>(coc-fix-current)')
 
 -- Mappings (based on https://github.com/WilHall/.dotfiles/blob/main/.vim/rcfiles/mappings.vim)
 

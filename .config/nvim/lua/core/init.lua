@@ -1,6 +1,7 @@
 local home = os.getenv("HOME")
 local g = vim.g      -- a table to access global variables
 local opt = vim.opt  -- to set options
+local api = vim.api
 
 -- Global variables
 g.did_load_filetypes = 0
@@ -89,12 +90,20 @@ opt.wrap = true
 opt.fixendofline = false
 
 -- Auto commands
-vim.api.nvim_command('au TextYankPost * silent! lua vim.highlight.on_yank()')
-vim.api.nvim_command('au FileChangedShell * execute')
-vim.api.nvim_command('au Filetype gitcommit setlocal spell textwidth=72')
-vim.api.nvim_command('au FocusGained,BufEnter * :checktime')
-vim.api.nvim_command('au VimResized * | set columns=120')
+api.nvim_command('au TextYankPost * silent! lua vim.highlight.on_yank()')
+api.nvim_command('au FileChangedShell * execute')
+api.nvim_command('au Filetype gitcommit setlocal spell textwidth=72')
+api.nvim_command('au FocusGained,BufEnter * :checktime')
+api.nvim_command('au VimResized * | set columns=120')
 -- automatically rebalance windows on vim resize
-vim.api.nvim_command('au VimResized * :wincmd =')
+api.nvim_command('au VimResized * :wincmd =')
 -- show cursorline in insert mode
-vim.api.nvim_command('au InsertEnter,InsertLeave * set cursorline!')
+api.nvim_command('au InsertEnter,InsertLeave * set cursorline!')
+
+-- autocommands
+-- highlight on yank
+api.nvim_create_autocmd("TextYankPost", {
+    callback = function()
+        vim.highlight.on_yank({ higroup = "IncSearch", timeout = 500 })
+    end,
+})

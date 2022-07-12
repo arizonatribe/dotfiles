@@ -1,6 +1,6 @@
 local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')
 
-cmd("colorscheme gruvbox")
+cmd("colorscheme nightfox")
 
 -- list chars
 cmd('hi Whitespace ctermfg=DarkGray guifg=#4a4a59')

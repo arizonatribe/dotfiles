@@ -4,12 +4,19 @@ Configuration files for Vim, Tmux, Bash, and others
 
 ## Grep
 
-For Vim/Neovim to work properly on grep (searching), two plugins are needed:
+For Vim/Neovim to work properly on grep (searching), several packages need to be installed:
 
 ```
 sudo dnf install -y \
   ripgrep \
-  the_silver_searcher \
+  the_silver_searcher
+```
+
+Also some optional packages (which depends on the programming language):
+
+```
+sudo dnf install -y \
+  ShellCheck \
   dotnet-sdk-6.0 \
   java-1.0.8-openjdk
 ```
@@ -65,7 +72,7 @@ export NVM_DIR="$HOME/.nvm"
 Now you can install any version of NodeJs, such as:
 
 ```
-nvm install v16.0.0
+nvm install v16.13.0
 ```
 
 ### Yarn
@@ -111,7 +118,8 @@ sudo dnf install \
   cmake \
   gcc \
   clang \
-  make
+  make \
+  libstdc++-static
 ```
 
 After the dependencies have been installed you can install Rust:
@@ -129,6 +137,12 @@ $ curl https://go.dev/dl/go1.17.7.linux-amd64.tar.gz
 $ tar -xzf go1.17.7.linux-amd64.tar.gz -C /usr/local
 ```
 
+Also a couple Go binaries:
+
+```
+go install mvdan.cc/sh/v3/cmd/shfmt@latest
+```
+
 ## Language Servers
 
 Several language servers can be installed via [yarn](https://yarnpkg.com/getting-started/install)
@@ -144,6 +158,8 @@ yarn global add \
   typescript \
   typescript-language-server \
   bash-language-server \
+  markdownlint \
+  write-good \
   dockerfile-language-server-nodejs \
   graphql-language-service-cli \
   intelephense \
@@ -169,20 +185,4 @@ And for setting up Golang's language server:
 
 ```
 $ go install golang.org/x/tools/gopls@latest
-```
-
-### Configure Language Servers
-
-Configure the Language servers by importing this from the `$HOME/.config/nvim/init.lua`
-
-```
-require'lspconfig'.bashls.setup{}
-require'lspconfig'.tsserver.setup{}
-require'lspconfig'.rust_analyzer.setup{}
-require'lspconfig'.pyright.setup{}
-require'lspconfig'.gopls.setup{}
-require'lspconfig'.dockerls.setup{}
-require'lspconfig'.graphql.setup{}
-require'lspconfig'.yamlls.setup{}
-require'lspconfig'.intelephense.setup{}
 ```
