@@ -1,5 +1,12 @@
 {
   "languageserver": {
+    "csharp-ls": {
+      "command": "csharp-ls",
+      "filetypes": ["cs"],
+      "initializationOptions": {
+        "AutomaticWorkspaceInit": true
+      }
+    },
     "golang": {
       "command": "gopls",
       "rootPatterns": ["go.work", "go.mod", ".vim/", ".git/", ".hg/"],

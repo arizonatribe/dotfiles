@@ -38,7 +38,7 @@ autocmd Filetype gitcommit setlocal spell textwidth=72
 set nocompatible
 set showcmd
 " set clipboard=unnamed
-set clipboard^=unnamedplus
+set clipboard^=unnamed,unnamedplus
 set hidden
 set updatetime=100
 set nobackup
@@ -88,10 +88,10 @@ set relativenumber
 set signcolumn=yes
 
 " whitespace
-set tabstop=4
+set tabstop=2
 set softtabstop=0
 set expandtab
-set shiftwidth=4
+set shiftwidth=2
 set smarttab
 set backspace=2
 set nojoinspaces
