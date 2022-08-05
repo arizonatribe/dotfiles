@@ -1,6 +1,6 @@
 local home = os.getenv("HOME")
-local g = vim.g      -- a table to access global variables
-local opt = vim.opt  -- to set options
+local g = vim.g -- a table to access global variables
+local opt = vim.opt -- to set options
 local api = vim.api
 
 -- Global variables
@@ -97,8 +97,10 @@ api.nvim_command('au FocusGained,BufEnter * :checktime')
 api.nvim_command('au VimResized * | set columns=120')
 -- automatically rebalance windows on vim resize
 api.nvim_command('au VimResized * :wincmd =')
--- show cursorline in insert mode
-api.nvim_command('au InsertEnter,InsertLeave * set cursorline!')
+
+-- Disabling, because it causes the starting character of the CLI prompt to be hidden
+-- -- show cursorline in insert mode
+--api.nvim_command('au InsertEnter,InsertLeave * set cursorline!')
 
 -- autocommands
 -- highlight on yank

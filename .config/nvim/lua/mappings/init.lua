@@ -41,12 +41,12 @@ map('n', ':Explore<cr>', ':NERDTreeToggle<CR>')
 -- Mappings (based on https://github.com/WilHall/.dotfiles/blob/main/.vim/rcfiles/mappings.vim)
 
 -- fold, unfold
-map('n', '<leader>ff', 'za')
-map('n', '<leader>FF', 'zA')
+map('n', '<leader>fo', 'za')
+map('n', '<leader>uf', 'zA')
 
 -- Maps for folding, unfolding all
 map('n', '<leader>fa', 'zM<cr>')
-map('n', '<leader>Fa', 'zR<cr>')
+map('n', '<leader>ua', 'zR<cr>')
 
 -- Marks
 map('n', 'm<leader>', ':delmarks a-zA-Z0-9<cr>')

@@ -175,6 +175,12 @@ $ curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/downloa
 $ chmod +x ~/.local/bin/rust-analyzer
 ```
 
+Set up Terraform version manager:
+
+```
+git clone git@github.com:tfutils/tfenv.git ~/.tfenv --branch v3.0.0
+```
+
 Setting up the Terraform language server:
 
 ```

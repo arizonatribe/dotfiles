@@ -8,7 +8,8 @@ end
 
 -- lazy macOS dark mode
 api.nvim_create_user_command("CheckBackground", function()
-    local mode = vim.trim(u.get_system_output("defaults read -g AppleInterfaceStyle")[1])
+    -- local mode = vim.trim(u.get_system_output("defaults read -g AppleInterfaceStyle")[1])
+    local mode = "Dark"
     local background = mode == "Dark" and "dark" or "light"
     api.nvim_set_option("background", background)
 end, {})

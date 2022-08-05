@@ -1,7 +1,5 @@
 local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')
 
-cmd("colorscheme nightfox")
-
 -- list chars
 cmd('hi Whitespace ctermfg=DarkGray guifg=#4a4a59')
 cmd('hi NonText ctermfg=DarkGray guifg=#4a4a59')
@@ -34,12 +32,6 @@ cmd('hi FzfBackground guibg=#282c34')
 
 -- spell check
 cmd('hi SpellBad cterm=undercurl gui=undercurl')
-
--- coc diagnostics
-cmd('hi CocErrorHighlight guifg=#c94940 gui=bold,undercurl cterm=bold,undercurl ')
-cmd('hi CocWarningHighlight guifg=#f4b80f gui=bold,undercurl cterm=bold,undercurl ')
-cmd('hi CocErrorFloat guifg=#c94940 gui=bold ')
-cmd('hi CocWarningFloat guifg=#f4b80f gui=bold ')
 
 -- easy motion targets
 cmd('hi EasyMotionTarget guifg=#f4b80f guibg=black')

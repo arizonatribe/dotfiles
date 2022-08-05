@@ -6,6 +6,9 @@ local border_opts = { border = "single", focusable = false, scope = "line" }
 
 vim.diagnostic.config({ virtual_text = false, float = border_opts })
 
+-- auto format
+vim.cmd([[autocmd BufWritePre *.go,*.js,*.ts,*.jsx,*.tsx,*.py,*.rs,*.json,*lua lua vim.lsp.buf.formatting_sync()]])
+
 local eslint_disabled_buffers = {}
 
 lsp.handlers["textDocument/signatureHelp"] = lsp.with(lsp.handlers.signature_help, border_opts)
@@ -107,19 +110,21 @@ for _, server in ipairs({
     "null-ls",
     "pyright",
     "sumneko_lua",
+    "terraform",
     "tsserver",
 }) do
     require("lsp." .. server).setup(on_attach, capabilities)
 end
 
-require'lspconfig'.bashls.setup{}
-require'lspconfig'.rust_analyzer.setup{}
-require'lspconfig'.pyright.setup{}
-require'lspconfig'.gopls.setup{}
-require'lspconfig'.dockerls.setup{}
-require'lspconfig'.graphql.setup{}
-require'lspconfig'.yamlls.setup{}
-require'lspconfig'.intelephense.setup{}
+require 'lspconfig'.bashls.setup {}
+require 'lspconfig'.rust_analyzer.setup {}
+require 'lspconfig'.pyright.setup {}
+require 'lspconfig'.gopls.setup {}
+require 'lspconfig'.dockerls.setup {}
+require 'lspconfig'.graphql.setup {}
+require 'lspconfig'.terraformls.setup {}
+require 'lspconfig'.yamlls.setup {}
+require 'lspconfig'.intelephense.setup {}
 
 -- suppress irrelevant messages
 local notify = vim.notify

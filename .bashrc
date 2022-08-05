@@ -192,6 +192,7 @@ fi
 export PATH="/usr/local/sbin:$PATH"
 # export PATH=/usr/local/Cellar/python/3.7.4_1/bin:$PATH
 export PATH=$PATH:"$HOME/.yarn/bin"
+export PATH=$PATH:"$HOME/.tfenv/bin"
 export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden -g '!**/node_modules' -g '!**/docs'"
 export GOBIN="$HOME/go/bin"
 export GOROOT="/usr/local/go"

@@ -1,10 +1,8 @@
 local home = os.getenv("HOME")
 local homevim = home .. "/.local/share/nvim/"
-local myvimrc = home .. "/.config/nvim/init.vim"
 local dirsite = homevim .. "site"
 local dirplugins = homevim .. "plugged"
 local dirautoload = dirsite .. "/autoload"
-local autoload_plug_file = dirautoload .. "/plug.vim"
 local dircolors = home .. "/.config/nvim/colors"
 local dirbackup = homevim .. "backup"
 local dirundo = homevim .. "undo"
@@ -62,9 +60,9 @@ if not exists(packerpath) then
 end
 
 -- source core config files
+require("colors")
 require("config")
 require("core")
 require("mappings")
 require("plugins")
-require("colors")
 require("lsp")

@@ -28,6 +28,7 @@ return require("packer").startup(function()
     })
     use({
         "sainnhe/edge", -- themes with light and dark variants
+        "sainnhe/gruvbox-material",
         "rmehri01/onenord.nvim",
         "folke/tokyonight.nvim",
         "rose-pine/neovim",
@@ -36,6 +37,9 @@ return require("packer").startup(function()
 
     -- highlight color codes
     use({ "RRethy/vim-hexokinase", config = config("hexokinase"), run = "make hexokinase" })
+
+    use('hoob3rt/lualine.nvim')
+    use('kdheepak/tabline.nvim')
 
     -- Papal plugins
     use('tpope/vim-commentary')
