@@ -97,9 +97,7 @@ api.nvim_command('au FocusGained,BufEnter * :checktime')
 api.nvim_command('au VimResized * | set columns=120')
 -- automatically rebalance windows on vim resize
 api.nvim_command('au VimResized * :wincmd =')
-
--- Disabling, because it causes the starting character of the CLI prompt to be hidden
--- -- show cursorline in insert mode
+-- show cursorline in insert mode
 --api.nvim_command('au InsertEnter,InsertLeave * set cursorline!')
 
 -- autocommands
