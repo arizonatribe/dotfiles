@@ -183,12 +183,32 @@ fi
 if [ -s "$NVM_DIR/bash_completion" ]; then
   . "$NVM_DIR/bash_completion"
 fi
+if [ -f ~/.fzf.bash ]; then
+  . ~/.fzf.bash
+fi
+if [ -f "$HOME/.cargo/env" ]; then
+  . "$HOME/.cargo/env"
+fi
+if type brew &>/dev/null
+then
+  HOMEBREW_PREFIX="$(brew --prefix)"
+  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]
+  then
+    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+  else
+    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*
+    do
+      [[ -r "${COMPLETION}" ]] && source "${COMPLETION}"
+    done
+  fi
+fi
 
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
 then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
+
 export PATH="/usr/local/sbin:$PATH"
 # export PATH=/usr/local/Cellar/python/3.7.4_1/bin:$PATH
 export PATH=$PATH:"$HOME/.yarn/bin"
@@ -202,19 +222,7 @@ export LUA_LSP_PATH="$HOME/tools/lua-language-server/bin"
 export PATH=$PATH:$GOBIN:$LUA_LSP_PATH:"$GOROOT/bin"
 export VIM_HOME="$HOME/.config/nvim/"
 export MYVIMRC="$VIM_HOME/init.lua"
-
-if [ -f ~/.fzf.bash ]; then
-  . ~/.fzf.bash
-fi
-if [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]]; then
-  . /usr/local/etc/profile.d/bash_completion.sh
-fi
-. "$HOME/.cargo/env"
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
- . $(brew --prefix)/etc/bash_completion
-fi
-
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+export PROJECTS_PATH="$HOME/Projects"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
