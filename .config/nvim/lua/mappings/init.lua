@@ -1,5 +1,5 @@
 local function map(mode, lhs, rhs, opts)
-  local options = {noremap = true}
+  local options = { noremap = true }
   if opts then options = vim.tbl_extend('force', options, opts) end
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
@@ -18,7 +18,7 @@ map('i', '<C-;>', '<C-r><C-p>*')
 map('c', '<C-;>', '<C-r><C-p>*')
 
 map('', '<leader>c', '"+y') -- Copy to clipboard in normal mode
-map('n', '<C-l>', '<cmd>noh<CR>')    -- Clear highlights
+map('n', '<C-l>', '<cmd>noh<CR>') -- Clear highlights
 
 -- Copy and paste with system clipboard
 map('v', '<C-c>', '"+y')
@@ -35,8 +35,8 @@ map('n', '<leader>gb', ':Git blame<CR>')
 map('n', '<leader>df', ':Gdiff<CR>')
 
 -- NERDTree (file browser)
-map('n', ':E<cr>', ':NERDTreeToggle<CR>')
-map('n', ':Explore<cr>', ':NERDTreeToggle<CR>')
+-- map('n', ':E<cr>', ':NERDTreeToggle<CR>')
+-- map('n', ':Explore<cr>', ':NERDTreeToggle<CR>')
 
 -- Mappings (based on https://github.com/WilHall/.dotfiles/blob/main/.vim/rcfiles/mappings.vim)
 
