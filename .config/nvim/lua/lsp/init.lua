@@ -34,6 +34,26 @@ end
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
+local lsp_formatting = function(bufnr)
+    local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
+    if vim.lsp.buf.format then
+        lsp.buf.format({
+            bufnr = bufnr,
+            filter = function(client)
+                if client.name == "eslint" then
+                    return not eslint_disabled_buffers[bufnr]
+                end
+
+                if client.name == "null-ls" then
+                    return not u.table.some(clients, function(_, other_client)
+                        return other_client.name == "eslint" and not eslint_disabled_buffers[bufnr]
+                    end)
+                end
+            end,
+        })
+    end
+end
+
 local on_attach = function(client, bufnr)
     -- commands
     u.buf_command(bufnr, "LspHover", vim.lsp.buf.hover)
@@ -64,29 +84,7 @@ local on_attach = function(client, bufnr)
 
     if client.supports_method("textDocument/formatting") then
         u.buf_command(bufnr, "LspFormatting", function()
-            if client.name == "eslint" then
-                vim.lsp.buf.format({
-                    bufnr = bufnr,
-                    filter = function(_c)
-                        return not eslint_disabled_buffers[bufnr]
-                    end,
-                })
-            end
-
-            if client.name == "null-ls" then
-                local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
-
-                if vim.lsp.buf.format then
-                    vim.lsp.buf.format({
-                        bufnr = bufnr,
-                        filter = function(_c)
-                            return not u.table.some(clients, function(_, other_client)
-                                return other_client.name == "eslint" and not eslint_disabled_buffers[bufnr]
-                            end)
-                        end,
-                    })
-                end
-            end
+            lsp_formatting(bufnr)
         end)
 
         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
@@ -104,6 +102,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 for _, server in ipairs({
+    "angular",
     "bashls",
     "eslint",
     "jsonls",
@@ -122,7 +121,6 @@ require 'lspconfig'.pyright.setup {}
 require 'lspconfig'.gopls.setup {}
 require 'lspconfig'.dockerls.setup {}
 require 'lspconfig'.graphql.setup {}
-require 'lspconfig'.terraformls.setup {}
 require 'lspconfig'.yamlls.setup {}
 require 'lspconfig'.intelephense.setup {}
 

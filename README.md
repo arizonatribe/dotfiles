@@ -158,12 +158,14 @@ yarn global add \
   typescript \
   typescript-language-server \
   bash-language-server \
+  @angular/language-server \
   markdownlint \
   write-good \
   dockerfile-language-server-nodejs \
   graphql-language-service-cli \
   intelephense \
   yaml-language-server \
+  vscode-langservers-extracted \
   pyright
 ```
 
