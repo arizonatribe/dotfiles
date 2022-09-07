@@ -1,10 +1,15 @@
 vim.g.material_style = "darker" -- darker, lighter, oceanic, palenight, deep ocean
 
-vim.api.nvim_set_keymap('n', '<leader>ml', [[<Cmd>lua require('material.functions').change_style('lighter')<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>mp', [[<Cmd>lua require('material.functions').change_style('palenight')<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>mo', [[<Cmd>lua require('material.functions').change_style('oceanic')<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>mdd', [[<Cmd>lua require('material.functions').change_style('deep ocean')<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>md', [[<Cmd>lua require('material.functions').change_style('darker')<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>ml', [[<Cmd>lua require('material.functions').change_style('lighter')<CR>]],
+	{ noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>mp', [[<Cmd>lua require('material.functions').change_style('palenight')<CR>]],
+	{ noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>mo', [[<Cmd>lua require('material.functions').change_style('oceanic')<CR>]],
+	{ noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>mdd', [[<Cmd>lua require('material.functions').change_style('deep ocean')<CR>]],
+	{ noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>md', [[<Cmd>lua require('material.functions').change_style('darker')<CR>]],
+	{ noremap = true, silent = true })
 
 require('material').setup({
 

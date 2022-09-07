@@ -35,8 +35,10 @@ map('n', '<leader>gb', ':Git blame<CR>')
 map('n', '<leader>df', ':Gdiff<CR>')
 
 -- NERDTree (file browser)
--- map('n', ':E<cr>', ':NERDTreeToggle<CR>')
--- map('n', ':Explore<cr>', ':NERDTreeToggle<CR>')
+map('n', ':E<cr>', ':NERDTreeToggle<CR>')
+map('n', ':Ex<cr>', ':NERDTreeToggle<CR>')
+map('n', ':Explore<cr>', ':NERDTreeToggle<CR>')
+map('n', '<C-g>', ':NERDTreeToggle<CR>')
 
 -- Mappings (based on https://github.com/WilHall/.dotfiles/blob/main/.vim/rcfiles/mappings.vim)
 

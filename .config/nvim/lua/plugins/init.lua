@@ -80,7 +80,7 @@ return require("packer").startup(function()
 
     -- GraphQL syntax support
     use('jparise/vim-graphql')
-    
+
     -- Svelte syntax support
     use({
         'evanleck/vim-svelte',
@@ -153,6 +153,8 @@ return require("packer").startup(function()
         'scrooloose/nerdtree',
         run = 'NERDTreeToggle',
     })
+    -- use('tpope/vim-vinegar')
+
     use({
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
@@ -166,32 +168,37 @@ return require("packer").startup(function()
 
     -- Pop-up window shows possible key combinations as you type
     use {
-      "folke/which-key.nvim",
-      config = function()
-        require("which-key").setup {}
-      end
+        "folke/which-key.nvim",
+        config = function()
+            require("which-key").setup {}
+        end
     }
 
     -- JavaScript(ish) syntax support
     use({
         'pangloss/vim-javascript',
-        ft = {'javascript', 'javascript.jsx'},
+        ft = { 'javascript', 'javascript.jsx' },
     })
     use({
         'leafgarland/typescript-vim',
-        ft = {'typescript', 'typescript.tsx'},
+        ft = { 'typescript', 'typescript.tsx' },
     })
     use({
         'styled-components/vim-styled-components',
         branch = 'main',
-        ft = {'javascript', 'javascript.jsx', 'typescript', 'typescript.tsx'},
+        ft = { 'javascript', 'javascript.jsx', 'typescript', 'typescript.tsx' },
     })
     use({
         'peitalin/vim-jsx-typescript',
-        ft = {'typescript.tsx'},
+        ft = { 'typescript.tsx' },
     })
     use('jose-elias-alvarez/null-ls.nvim')
     use('jose-elias-alvarez/typescript.nvim')
+    use_with_config('numToStr/FTerm.nvim', 'fterm')
+    use({
+        'glacambre/firenvim',
+        run = function() vim.fn['firenvim#install'](0) end
+    })
 
     use("nvim-lua/plenary.nvim")
 end)

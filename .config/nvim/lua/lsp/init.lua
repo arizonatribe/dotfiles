@@ -115,14 +115,12 @@ for _, server in ipairs({
     require("lsp." .. server).setup(on_attach, capabilities)
 end
 
-require 'lspconfig'.bashls.setup {}
 require 'lspconfig'.rust_analyzer.setup {}
 require 'lspconfig'.pyright.setup {}
 require 'lspconfig'.gopls.setup {}
 require 'lspconfig'.dockerls.setup {}
 require 'lspconfig'.graphql.setup {}
 require 'lspconfig'.yamlls.setup {}
-require 'lspconfig'.intelephense.setup {}
 
 -- suppress irrelevant messages
 local notify = vim.notify

@@ -89,6 +89,7 @@ end
 _G.css_to_js = css_to_js
 
 local M = {}
+
 M.setup = function(on_attach, capabilities)
     require("typescript").setup({
         server = {
