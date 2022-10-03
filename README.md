@@ -189,6 +189,12 @@ Setting up the Terraform language server:
 $ dnf install terraform-ls
 ```
 
+Set up CloudFormation linting:
+
+```
+brew install cfn-lint
+```
+
 And for setting up Golang's language server:
 
 ```

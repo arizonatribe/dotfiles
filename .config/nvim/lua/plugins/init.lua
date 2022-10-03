@@ -74,6 +74,8 @@ return require("packer").startup(function()
         opt = true,
         ft = { 'json' },
     })
+    -- Multiple kinds of JSON Schema support
+    use('b0o/SchemaStore.nvim')
 
     -- NGINX syntax support
     use('vim-scripts/nginx.vim')

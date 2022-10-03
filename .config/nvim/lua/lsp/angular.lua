@@ -7,7 +7,7 @@ local function get_node_modules(root_dir)
     local stats = uv.fs_stat(root_node)
     if stats == nil then
         local parent_dir = vim.fn.fnamemodify(root_dir, ":h")
-        if parent_dir == "." then
+        if parent_dir == "." or parent_dir == root_dir then
             return nil
         else
             return get_node_modules(parent_dir)

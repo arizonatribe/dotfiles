@@ -111,6 +111,7 @@ for _, server in ipairs({
     "sumneko_lua",
     "terraform",
     "tsserver",
+    "yaml",
 }) do
     require("lsp." .. server).setup(on_attach, capabilities)
 end
@@ -120,7 +121,6 @@ require 'lspconfig'.pyright.setup {}
 require 'lspconfig'.gopls.setup {}
 require 'lspconfig'.dockerls.setup {}
 require 'lspconfig'.graphql.setup {}
-require 'lspconfig'.yamlls.setup {}
 
 -- suppress irrelevant messages
 local notify = vim.notify
